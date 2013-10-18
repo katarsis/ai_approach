@@ -12,12 +12,12 @@ public class MainTest {
 		// TODO Auto-generated method stub
 		
 		//create the initial state which all position on the left side
-		Node<State> input = new  Node<State>(new State(true, true, true, "L"));
+		Node<State> initalState = new  Node<State>(new State(true, true, true, "L"));
 		
 		ArrayList<Node> fringe = new ArrayList<Node>();
 		Node<State> goalNode = new Node<State>(new State(true, true, true, "L"));
 		//add this state to list of searching states
-		fringe.add(input);
+		fringe.add(initalState);
 		try
 		{
 			//get item from the list of searching
@@ -50,7 +50,7 @@ public class MainTest {
 			ex.printStackTrace();
 		}
 		
-		Tree SlovedTree =  new Tree(input);
+		Tree SlovedTree =  new Tree(initalState);
 	}
 	
 	public static ArrayList<Node<State>> GetAllChild(Node input)
