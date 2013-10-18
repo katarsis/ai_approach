@@ -15,6 +15,7 @@ public class MainTest {
 		Node<State> input = new  Node<State>(new State(true, true, true, "L"));
 		
 		ArrayList<Node> fringe = new ArrayList<Node>();
+		Node<State> goalNode = new Node<State>(new State(true, true, true, "L"));
 		//add this state to list of searching states
 		fringe.add(input);
 		try
@@ -25,13 +26,9 @@ public class MainTest {
 				State CurrentState =  (State)CurrentNode.GetContent();	
 			//if this state is goal return this
 				if (CurrentState.IsFinState()){
-			//print result
-					while(CurrentNode!=null)
-					{
-						State StateNow = (State)CurrentNode.GetContent();
-						StateNow.Print();
-						CurrentNode = CurrentNode.GetParent();
-					}
+			//break cycle
+					goalNode = CurrentNode;
+					break;
 				}
 			//else create all possible state from this position
 			ArrayList<Node<State>> Childs = GetAllChild(CurrentNode);
@@ -40,7 +37,13 @@ public class MainTest {
 			fringe.remove(CurrentNode);
 			//return to step 2
 			}
-			
+			//print the slove
+			while(goalNode!=null)
+			{
+				State StateNow = (State)goalNode.GetContent();
+				StateNow.Print();
+				goalNode = goalNode.GetParent();
+			}
 		}
 		catch(Exception ex)
 		{
