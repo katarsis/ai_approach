@@ -28,6 +28,9 @@ public class MainTest {
 	 // create list of new elements 
 	  ArrayList<Node<State>> Result = new ArrayList<Node<State>>();
 	  State CurrentState = (State)input.GetContent();
+	 // if too match depth then return null 
+	  if(input.indexDepth>6)
+	  return null;
 	 // for each state in input item change vice versa
 	  
 	  try{
@@ -64,6 +67,7 @@ public class MainTest {
 	  }
 	  catch(Exception ex){ex.printStackTrace();}
 	 // return list 
+	
 	 return Result;
 		
 		
@@ -127,7 +131,7 @@ public class MainTest {
 			while(!fringe.isEmpty()){
 			//get item with max depth
 				Node<State> CurrentNode = fringe.get(getMaxDepthNode(fringe)); 
-				State CurrentState =  (State)CurrentNode.GetContent();	
+				State CurrentState =  (State)CurrentNode.GetContent();
 			//if this state is goal return this
 				if (CurrentState.IsFinState()){
 			//break cycle
@@ -137,7 +141,7 @@ public class MainTest {
 			//else create all possible state from this position
 			ArrayList<Node<State>> Childs = GetAllChild(CurrentNode);
 			
-			fringe.addAll(Childs);
+			if(Childs!= null)fringe.addAll(Childs);
 			//remove expanded state and add all his possible child state to the list of searching
 			fringe.remove(CurrentNode);
 			//return to step 2
