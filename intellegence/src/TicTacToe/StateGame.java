@@ -1,5 +1,7 @@
 package TicTacToe;
 
+import java.util.ArrayList;
+
 import piton.tree.IState;
 
 public class StateGame implements IState{
@@ -20,6 +22,12 @@ public class StateGame implements IState{
 	public void Print() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ArrayList getAllChild(Object input) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
