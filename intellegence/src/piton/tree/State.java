@@ -3,11 +3,11 @@ package piton.tree;
 import java.util.HashMap;
 
 /*
- * implement state of task
+ * implement state of task about wolf,koza,kapusta
  * @author piton 01/10/13   
  * 
  * */
-public class State implements Cloneable{
+public class State implements Cloneable,IState{
 	
 	public HashMap<String, Boolean> Right_side;
 	public HashMap<String, Boolean> Left_side;
