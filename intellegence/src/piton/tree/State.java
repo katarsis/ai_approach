@@ -1,13 +1,15 @@
 package piton.tree;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 /*
- * implement state of task
+ * implement state of task about wolf,koza,kapusta
  * @author piton 01/10/13   
  * 
  * */
-public class State implements Cloneable{
+public class State implements Cloneable,IState<State>{
 	
 	public HashMap<String, Boolean> Right_side;
 	public HashMap<String, Boolean> Left_side;
@@ -80,5 +82,45 @@ public class State implements Cloneable{
         //clone.Locate = new String(this.Locate);
         return clone;
   }
+
+	@Override
+	public ArrayList<State> getAllChild(State input) {
+		 // create list of new state 
+		  ArrayList <State> Result = new ArrayList<State>();
+		  State CurrentState = input;
+		 // for each state in input item change vice versa
+		  
+		  try{
+			  
+		  for(Entry<String, Boolean> entry: CurrentState.Right_side.entrySet())
+			{
+				State NewState = new State(true, true, true, "L");
+						NewState = CurrentState.clone();
+				NewState.Locate = new String();
+				NewState.Left_side.put(entry.getKey(), entry.getValue());
+				NewState.Right_side.put(entry.getKey(), !entry.getValue());
+				
+				if(CurrentState.Locate.equals("L"))NewState.Locate = "R";
+				else NewState.Locate ="L";
+			 // if it's possible state adding in list	
+				if (NewState.IsPossibleState()) {
+					Result.add(NewState);
+				}
+			}
+		// also get state when only plot change side
+			  State NewState =  new State();
+			  NewState = CurrentState.clone();
+			  if(CurrentState.Locate.equals("L"))NewState.Locate = "R";
+				else NewState.Locate ="L";
+			  if (NewState.IsPossibleState()) {
+					Result.add(NewState);
+			 }
+		  }
+		  catch(Exception ex){ex.printStackTrace();}
+		 // return list 
+		
+		 return Result;
+		
+	}
 	
 }

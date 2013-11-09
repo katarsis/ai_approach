@@ -4,11 +4,27 @@ import java.awt.List;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+import TicTacToe.MainWindow;
+
 
 
 public class MainTest {
 
 	public static void main(String[] args) throws CloneNotSupportedException, NodeException {
+		//for TicTacToe starter
+		/*Display display =  new Display();
+		Shell shell =  new Shell(display);
+		MainWindow game = new MainWindow(shell,0);
+		shell.pack();
+		shell.open();
+		while (!shell.isDisposed ()) {
+			if (!display.readAndDispatch ()) display.sleep ();
+		}
+		display.dispose ();*/		
+		
 		//create the initial state which all position on the left side
 		Node<State> initalState = new  Node<State>(new State(true, true, true, "L"));
 		Node goalNode = searchInDepth(initalState);
