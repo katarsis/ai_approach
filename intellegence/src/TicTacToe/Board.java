@@ -6,7 +6,7 @@ public class Board {
 	private final int CROSS_FLAG = 1;
 	private final int ZERO_FLAG =0;
 	private final int NONE_FLAG =-1;
-	private final int DIMENSION_SIZE =3;
+	public final int DIMENSION_SIZE =3;
 	
 	public Board()
 	{
