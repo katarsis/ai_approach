@@ -3,7 +3,7 @@ package piton.tree;
 public class NodeException extends Exception {
 
 	public NodeException() {
-	// TODO Auto-generated constructor stub
+	//  TODO Auto-generated constructor stub
 		super();
 	}
 }
