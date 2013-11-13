@@ -2,6 +2,9 @@ package piton.tree;
 
 import java.util.ArrayList;
 
+import TicTacToe.IGameState;
+import TicTacToe.StateGame;
+
 /*
  * abstract class for encapsulation operation with tree
  * @author (name = piton)
@@ -39,4 +42,168 @@ public class Tree {
 		return pathOutput;
 	}
 	
+	/*
+	 * Realization search on the tree in the depth 
+	 * @param	initalNodeInput	the startState of the search
+	 * @return	goalNode	the goal node of the search
+	 */
+	public static Node searchInDepth(Node initalNodeInput)
+	{
+		Node<State> initalState = initalNodeInput;
+		ArrayList<Node> fringe = new ArrayList<Node>();
+		Node<State> goalNode = new Node<State>(new State());
+		int currentDepth =0;
+		//add this state to list of searching states
+		fringe.add(initalState);
+		try
+		{
+			//get item from the list of searching
+			while(!fringe.isEmpty()){
+			//get item with max depth
+				Node<State> CurrentNode = fringe.get(getMaxDepthNode(fringe)); 
+				State CurrentState =  (State)CurrentNode.GetContent();
+			//if this state is goal return this
+				if (CurrentState.IsFinState()){
+			//break cycle
+					goalNode = CurrentNode;
+					break;
+				}
+			//else create all possible state from this position
+			ArrayList<Node> Childs = GetAllChild(CurrentNode);
+			
+			if(Childs!= null)fringe.addAll(Childs);
+			//remove expanded state and add all his possible child state to the list of searching
+			fringe.remove(CurrentNode);
+			//return to step 2
+			}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return goalNode;
+		
+	}
+	
+	
+	/*
+	 * realization search on the tree in the front
+	 * @param	initalNodeInput	the startState of the search
+	 * @return	goalNode	the goal node of the search
+	 */
+	public static Node searchInFront(Node initalNodeInput){
+		//create the initial state which all position on the left side
+		Node<State> initalState = initalNodeInput;
+		ArrayList<Node> fringe = new ArrayList<Node>();
+		Node<State> goalNode = new Node<State>(new State());
+		//add this state to list of searching states
+		fringe.add(initalState);
+		try
+		{
+			//get item from the list of searching
+			while(!fringe.isEmpty()){
+				Node<State> CurrentNode = fringe.get(0); 
+				State CurrentState =  (State)CurrentNode.GetContent();	
+			//if this state is goal return this
+				if (CurrentState.IsFinState()){
+			//break cycle
+					goalNode = CurrentNode;
+					break;
+				}
+			//else create all possible state from this position
+			ArrayList<Node> Childs = GetAllChild(CurrentNode);
+			fringe.addAll(Childs);
+			//remove expanded state and add all his possible child state to the list of searching
+			fringe.remove(CurrentNode);
+			//return to step 2
+			}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return goalNode;
+	}
+	
+	/*
+	 * @param	inputArrayNode
+	 * @return	index of the node with max depth
+	 */
+	
+	public static int getMaxDepthNode(ArrayList<Node> inputArrayNode)
+	{
+		int indexMax =0;
+		for(int i=0; i<inputArrayNode.size()-1; i++)
+			if(inputArrayNode.get(indexMax).indexDepth<inputArrayNode.get(i).indexDepth)
+				indexMax = i;
+ 		return indexMax;
+	}
+	
+	public static ArrayList<Node> GetAllChild(Node input)
+	{
+	 // create list of new elements 
+	  ArrayList<Node> Result = new ArrayList<Node>();
+	  IState CurrentState = (IState)input.GetContent();
+	 // if too match depth then return null 
+	  if(input.indexDepth>6)
+	  return null;
+	 // for each state in input item change vice versa
+	  
+	  try{
+		 ArrayList<IState> childState = CurrentState.getAllChild(CurrentState);
+		 for(int i=0;i<childState.size();i++)
+		 {
+			 Node<IState> NewNode = new Node<IState>(childState.get(i));
+				NewNode.indexDepth = input.indexDepth+1;
+				input.AddChild(NewNode);
+				Result.add(NewNode); 
+		 }
+	  }
+	  catch(Exception ex){ex.printStackTrace();}
+	 // return list 
+	
+	 return Result;
+		
+		
+	}
+	
+	/*
+	 * implement procedure of min max search
+	 * @param	currentState	the current state of human stage
+	 * @return	goalNode		the computer step state	
+	 */
+	public static Node getMinMaxStep(Node currentStep, int maxDepth)
+	{
+		IGameState currentState  = (IGameState)currentStep.GetContent();
+		ArrayList<Node> fringe = new ArrayList<Node>();
+		Node<IGameState> goalNode = new Node<IGameState>(new StateGame());
+		//add this state to list of searching states
+		fringe.add(currentStep);
+		try
+		{
+			//get item from the list of searching
+			while(!fringe.isEmpty()){
+				Node<IGameState> CurrentNode = fringe.get(0); 
+				IGameState CurrentState =  (IGameState)CurrentNode.GetContent();	
+			//if this state is goal return this
+				if (CurrentState.IsFinState()){
+			//break cycle
+					goalNode = CurrentNode;
+					break;
+				}
+			//else create all possible state from this position
+			ArrayList<Node> Childs = GetAllChild(CurrentNode);
+			fringe.addAll(Childs);
+			//remove expanded state and add all his possible child state to the list of searching
+			fringe.remove(CurrentNode);
+			//return to step 2
+			}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		//return goalNode
+		return null;
+	}
 }

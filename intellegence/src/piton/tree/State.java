@@ -9,7 +9,7 @@ import java.util.Map.Entry;
  * @author piton 01/10/13   
  * 
  * */
-public class State implements Cloneable,IState<State>{
+public class State implements Cloneable,IState{
 	
 	public HashMap<String, Boolean> Right_side;
 	public HashMap<String, Boolean> Left_side;
@@ -83,11 +83,11 @@ public class State implements Cloneable,IState<State>{
         return clone;
   }
 
-	@Override
-	public ArrayList<State> getAllChild(State input) {
+	
+	public ArrayList<IState> getAllChild(IState input) {
 		 // create list of new state 
-		  ArrayList <State> Result = new ArrayList<State>();
-		  State CurrentState = input;
+		  ArrayList <IState> Result = new ArrayList<IState>();
+		  State CurrentState = (State)input;
 		 // for each state in input item change vice versa
 		  
 		  try{
@@ -104,7 +104,7 @@ public class State implements Cloneable,IState<State>{
 				else NewState.Locate ="L";
 			 // if it's possible state adding in list	
 				if (NewState.IsPossibleState()) {
-					Result.add(NewState);
+					Result.add((IState)NewState);
 				}
 			}
 		// also get state when only plot change side
@@ -113,7 +113,7 @@ public class State implements Cloneable,IState<State>{
 			  if(CurrentState.Locate.equals("L"))NewState.Locate = "R";
 				else NewState.Locate ="L";
 			  if (NewState.IsPossibleState()) {
-					Result.add(NewState);
+					Result.add((IState)NewState);
 			 }
 		  }
 		  catch(Exception ex){ex.printStackTrace();}
@@ -122,5 +122,7 @@ public class State implements Cloneable,IState<State>{
 		 return Result;
 		
 	}
+
+
 	
 }
