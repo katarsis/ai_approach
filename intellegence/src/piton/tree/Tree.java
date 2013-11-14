@@ -69,7 +69,7 @@ public class Tree {
 					break;
 				}
 			//else create all possible state from this position
-			ArrayList<Node> Childs = GetAllChild(CurrentNode);
+			ArrayList<Node> Childs = getAllChild(CurrentNode);
 			
 			if(Childs!= null)fringe.addAll(Childs);
 			//remove expanded state and add all his possible child state to the list of searching
@@ -111,7 +111,7 @@ public class Tree {
 					break;
 				}
 			//else create all possible state from this position
-			ArrayList<Node> Childs = GetAllChild(CurrentNode);
+			ArrayList<Node> Childs = getAllChild(CurrentNode);
 			fringe.addAll(Childs);
 			//remove expanded state and add all his possible child state to the list of searching
 			fringe.remove(CurrentNode);
@@ -139,7 +139,11 @@ public class Tree {
  		return indexMax;
 	}
 	
-	public static ArrayList<Node> GetAllChild(Node input)
+	/*
+	 * 
+	 * 
+	 */
+	public static ArrayList<Node> getAllChild(Node input)
 	{
 	 // create list of new elements 
 	  ArrayList<Node> Result = new ArrayList<Node>();
@@ -170,40 +174,34 @@ public class Tree {
 	/*
 	 * implement procedure of min max search
 	 * @param	currentState	the current state of human stage
+	 * @param	maxDepth		the max node depth for terminal state
 	 * @return	goalNode		the computer step state	
 	 */
 	public static Node getMinMaxStep(Node currentStep, int maxDepth)
 	{
-		IGameState currentState  = (IGameState)currentStep.GetContent();
+		/*
+		 * create decision tree from the current state
+		 * max depth of node decision tree limited of maxDepth 
+		 * on terminal node compute costs of state for gamer inverted current state
+		 * slove costs for other node of decision tree
+		 * in all child states for current state get state with max costs  
+		 */
+		// create decision tree from the current state
+		IGameState currentState =  (IGameState)currentStep.GetContent();
+		Node rootOfDecisionTree = currentStep;
 		ArrayList<Node> fringe = new ArrayList<Node>();
-		Node<IGameState> goalNode = new Node<IGameState>(new StateGame());
-		//add this state to list of searching states
-		fringe.add(currentStep);
-		try
+		fringe.add(rootOfDecisionTree);
+		
+		boolean allTreminalNode = false;
+		while(!fringe.isEmpty())
 		{
-			//get item from the list of searching
-			while(!fringe.isEmpty()){
-				Node<IGameState> CurrentNode = fringe.get(0); 
-				IGameState CurrentState =  (IGameState)CurrentNode.GetContent();	
-			//if this state is goal return this
-				if (CurrentState.IsFinState()){
-			//break cycle
-					goalNode = CurrentNode;
-					break;
-				}
-			//else create all possible state from this position
-			ArrayList<Node> Childs = GetAllChild(CurrentNode);
-			fringe.addAll(Childs);
-			//remove expanded state and add all his possible child state to the list of searching
-			fringe.remove(CurrentNode);
-			//return to step 2
-			}
+			Node currentNode  =  fringe.get(0);
+			ArrayList<Node> childs= getAllChild(currentNode);
+			if(childs!=null)fringe.addAll(childs);
+			fringe.remove(currentNode);
 		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		//return goalNode
-		return null;
+		
+		
+		return rootOfDecisionTree;
 	}
 }

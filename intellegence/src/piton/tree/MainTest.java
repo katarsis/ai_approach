@@ -57,7 +57,7 @@ public class MainTest {
 		while (!stateGame.IsFinState())
 		{
 			answer = reader.readLine();
-			//currentNode = Tree.getMinMaxStep(currentNode);
+			currentNode = Tree.getMinMaxStep(currentNode,20);
 			stateGame.Print();
 		}
 		

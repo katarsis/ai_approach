@@ -48,6 +48,10 @@ public class StateGame implements IGameState, Cloneable{
 						StateGame child = new StateGame();
 						child.boardState = this.boardState.clone();
 						child.thisAgeAt = getInvertGamer();
+						if(child.thisAgeAt==GAMER_CROSS)
+							child.boardState.setCrossAt(xPosition, yPosition);
+						else
+							child.boardState.setZeroAt(xPosition, yPosition);
 						childsState.add(child);
 					} 
 				} 
