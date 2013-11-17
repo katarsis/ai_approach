@@ -28,7 +28,7 @@ public class MainTest {
 			
 			switch(menuItem){
 			case 1: taskTicTacToe();
-			case 0:taskAboutThree();
+			case 0: taskAboutThree();
 			}
 		}
 		catch (Exception e) 
@@ -53,12 +53,12 @@ public class MainTest {
 		String answer = reader.readLine();
 		IGameState stateGame =  new StateGame();
 		Node start = new Node<IGameState>(stateGame);
-		Node currentNode = new Node<IGameState>(stateGame);
-		while (!stateGame.IsFinState())
+		IGameState currentState =  stateGame;
+		while (!currentState.IsFinState())
 		{
 			answer = reader.readLine();
-			currentNode = Tree.getMinMaxStep(currentNode,20);
-			stateGame.Print();
+			currentState = Tree.getMinMaxStep(currentState,2);
+			currentState.Print();
 		}
 		
 		//for TicTacToe starter

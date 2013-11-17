@@ -2,14 +2,17 @@ package TicTacToe;
 
 import java.util.ArrayList;
 
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
+
 import piton.tree.IState;
 import piton.tree.State;
 
 public class StateGame implements IGameState, Cloneable{
 
 	private Board boardState;
-	final int GAMER_CROSS = 0;
-	final int GAMER_ZERO = 1;
+	public static final int GAMER_CROSS = 0;
+	public static final int GAMER_ZERO = 1;
+	public static int COMP_GAMER=-999;
 	final int UNDEFINED = -999;
 	public int thisAgeAt;
 	public int utility;
@@ -26,7 +29,13 @@ public class StateGame implements IGameState, Cloneable{
 	}
 	@Override
 	public boolean IsFinState() {
-		return false;
+		boolean result = false;
+		//control if current gamer or it's opponent has win return true
+		if (isWin(thisAgeAt)) result = true;
+		else if (isWin(this.getInvertGamer()))  result = true;
+		//if non exists empty field return true
+		else if (noEmptyFeilds()) result = true;
+		return result;
 	}
 
 	@Override
@@ -134,4 +143,44 @@ public class StateGame implements IGameState, Cloneable{
 		}
 		return utility;
 	}
+
+	public boolean noEmptyFeilds()
+	{
+		boolean result =true;
+		for(int i=0; i<boardState.DIMENSION_SIZE;i++)
+		{
+			for(int j=0;j<boardState.DIMENSION_SIZE;j++)
+			{
+				if(boardState.isEmptyFeild(i, j)) result=false;
+			}
+		}
+		return result;
+	}
+
+	public int getHeuristic(int theGamer)
+	{
+		int result = 0;
+		
+		return result;
+	}
+
+	@Override
+	public int getCurrentGamer() {
+		
+		return thisAgeAt;
+	}
+
+	@Override
+	public int getHeuristicValue() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Object getInstance() {
+		
+		return this;
+	}
+	
+	
 }

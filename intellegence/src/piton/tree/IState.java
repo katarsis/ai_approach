@@ -8,5 +8,5 @@ public interface IState {
 	public boolean IsFinState();
 	public void Print();
 	public ArrayList<IState> getAllChild(IState input);
-	
+	public int getCurrentGamer();
 }

@@ -16,6 +16,8 @@ public class Tree {
 	 * the root of tree
 	 */
 	private Node Root; 
+	private static final int INF_MIN=-999;
+	private static final int INF_MAX = 999;
 	
 	/*
 	 * Constructor
@@ -177,31 +179,42 @@ public class Tree {
 	 * @param	maxDepth		the max node depth for terminal state
 	 * @return	goalNode		the computer step state	
 	 */
-	public static Node getMinMaxStep(Node currentStep, int maxDepth)
+	public static IGameState getMinMaxStep(IGameState currentStep, int maxDepth)
 	{
 		/*
-		 * create decision tree from the current state
-		 * max depth of node decision tree limited of maxDepth 
-		 * on terminal node compute costs of state for gamer inverted current state
-		 * slove costs for other node of decision tree
-		 * in all child states for current state get state with max costs  
+		 * implements min max algoritm
+		 * for each possible children of current states
+		 * if gamer is computer then find max of score
+		 * if gamer is man then minimazing of scope
+		 * return answer state in node       
 		 */
-		// create decision tree from the current state
-		IGameState currentState =  (IGameState)currentStep.GetContent();
-		Node rootOfDecisionTree = currentStep;
-		ArrayList<Node> fringe = new ArrayList<Node>();
-		fringe.add(rootOfDecisionTree);
-		
-		boolean allTreminalNode = false;
-		while(!fringe.isEmpty())
+		StateGame fristStage = (StateGame)currentStep.getInstance();
+		IGameState currentState =  fristStage;
+		//FIXME create a static procedure or delete input parametr
+		ArrayList<IState> childrenStates = currentState.getAllChild(currentState);
+		if(fristStage.IsFinState())
+			return fristStage;
+		if(fristStage.getCurrentGamer() ==  fristStage.COMP_GAMER)
 		{
-			Node currentNode  =  fringe.get(0);
-			ArrayList<Node> childs= getAllChild(currentNode);
-			if(childs!=null)fringe.addAll(childs);
-			fringe.remove(currentNode);
+			int bestScore = INF_MIN;
+			for(IState child: childrenStates)
+			{
+				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1);
+				if(possibleChild.getHeuristicValue()>bestScore);
+				return possibleChild;
+			}
 		}
+		else if(fristStage.getCurrentGamer() != fristStage.COMP_GAMER)
+		{
+			int bestScore = INF_MAX;
+			for(IState child: childrenStates)
+			{
+				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1);
+				if(possibleChild.getHeuristicValue()<bestScore);
+				return possibleChild;
+			}
+		}
+		return null;
 		
-		
-		return rootOfDecisionTree;
 	}
 }

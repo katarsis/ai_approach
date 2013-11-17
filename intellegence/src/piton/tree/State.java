@@ -123,6 +123,12 @@ public class State implements Cloneable,IState{
 		
 	}
 
+	@Override
+	public int getCurrentGamer() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	
 }
