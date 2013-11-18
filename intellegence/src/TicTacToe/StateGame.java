@@ -102,19 +102,21 @@ public class StateGame implements IGameState, Cloneable{
 		// if fin state is find return true
 		isWinState = true;
 		for (int i=0;i<boardState.DIMENSION_SIZE;i++)
-			for(int j=0;j<boardState.DIMENSION_SIZE;j++)
-				if(boardState.getBoardsFlagAt(j, i)!=pice)
+			if(boardState.getBoardsFlagAt(i, i)!=pice)
 					isWinState = false;
 		if(isWinState)
 			return true;
 		// Fourth step see 7-3 diagonal for watch fin state
 		// if fin state is find return true
 		// else return false
-		isWinState = true;	
-		for (int i=boardState.DIMENSION_SIZE;i>=0;i--)
-			for(int j=0;j<boardState.DIMENSION_SIZE;j++)
-				if(boardState.getBoardsFlagAt(i, j)!=pice)
-					isWinState = false;
+		isWinState = true;
+		int xPos =boardState.DIMENSION_SIZE-1 ;
+		for(int j=0;j<boardState.DIMENSION_SIZE;j++)
+		{
+			if(boardState.getBoardsFlagAt(xPos, j)!=pice)
+				isWinState = false;
+			xPos--;
+		}
 		return isWinState;
 	}
 	
@@ -157,13 +159,6 @@ public class StateGame implements IGameState, Cloneable{
 		return result;
 	}
 
-	public int getHeuristic(int theGamer)
-	{
-		int result = 0;
-		
-		return result;
-	}
-
 	@Override
 	public int getCurrentGamer() {
 		
@@ -171,8 +166,29 @@ public class StateGame implements IGameState, Cloneable{
 	}
 
 	@Override
-	public int getHeuristicValue() {
+	public int getHeuristicValue(int gamerID) {
 		// TODO Auto-generated method stub
+		/*
+		 * return value of heuristic 
+		 * if on line it's one =1
+		 * if on line it's two =10
+		 * if on line it's three =100
+		 * for row calculate the heuristic value
+		 * for column calculate the heuristic value 
+		 * for diagonal 1-9 calculate the heuristic value
+		 * for diaganal 7-3 calculate the heuristic value 
+		 */
+		
+		int resultHeuristic =0;
+		for(int xPosition=0;xPosition<boardState.DIMENSION_SIZE;xPosition++)
+		{
+			int temporaryResult =0;
+			int count=0;
+			for (int yPosition =0; yPosition<boardState.DIMENSION_SIZE;yPosition++)
+			{
+				//if(boardState.getBoardsFlagAt(xPosition, yPosition)==gamerID)
+			}
+		}
 		return 0;
 	}
 

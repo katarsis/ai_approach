@@ -11,6 +11,6 @@ public interface IGameState extends IState {
 	public void Print();
 	public ArrayList<IState> getAllChild(IState input);
 	public int getMinMaxValue();
-	public int getHeuristicValue();
+	public int getHeuristicValue(int gamerID);
 	public Object getInstance();
 }
