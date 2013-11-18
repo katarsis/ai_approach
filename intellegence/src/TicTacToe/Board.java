@@ -56,7 +56,12 @@ public class Board implements Cloneable{
 			String outline="";
 			for(int j=0;j<DIMENSION_SIZE;j++)
 			{
-				outline+=boardsFlag[i][j]==this.CROSS_FLAG ? "X":"0";
+				if(boardsFlag[i][j]==this.CROSS_FLAG)
+					outline+="X";
+				else if(boardsFlag[i][j]==this.ZERO_FLAG)
+					outline+="0";
+				else
+					outline+=" ";
 				outline+="|";
 			}
 			System.out.println(outline);
