@@ -13,4 +13,6 @@ public interface IGameState extends IState {
 	public int getMinMaxValue();
 	public int getHeuristicValue(int gamerID);
 	public Object getInstance();
+	public boolean setPiecesIn(int xPos, int yPos, int pieces);
+	public void changeGamer();
 }

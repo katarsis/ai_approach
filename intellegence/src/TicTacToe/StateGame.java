@@ -10,9 +10,10 @@ import piton.tree.State;
 public class StateGame implements IGameState, Cloneable{
 
 	private Board boardState;
-	public static final int GAMER_CROSS = 0;
-	public static final int GAMER_ZERO = 1;
+	public static final int GAMER_CROSS = 1;
+	public static final int GAMER_ZERO = 0;
 	public static int COMP_GAMER=-999;
+	public static int HUMAN_GAMER=-999;
 	final int UNDEFINED = -999;
 	public int thisAgeAt;
 	public int utility;
@@ -181,22 +182,85 @@ public class StateGame implements IGameState, Cloneable{
 		 */
 		
 		int resultHeuristic =0;
+		int oppGamer =0;
+		if(gamerID == StateGame.COMP_GAMER)
+			oppGamer=StateGame.GAMER_ZERO;
+		else
+			oppGamer =StateGame.COMP_GAMER;
+		
 		for(int xPosition=0;xPosition<boardState.DIMENSION_SIZE;xPosition++)
 		{
-			int temporaryResult =0;
 			int count=0;
 			for (int yPosition =0; yPosition<boardState.DIMENSION_SIZE;yPosition++)
 			{
-				//if(boardState.getBoardsFlagAt(xPosition, yPosition)==gamerID)
+				if(boardState.getBoardsFlagAt(xPosition, yPosition)==gamerID)count++;
+				else if(boardState.getBoardsFlagAt(xPosition, yPosition)==oppGamer){
+					count=-10;
+					break;
+				}
+			}
+			resultHeuristic+=10^count;
+		}
+		
+		
+		for(int yPosition=0;yPosition<boardState.DIMENSION_SIZE;yPosition++)
+		{
+			int count=0;
+			for (int xPosition =0; xPosition<boardState.DIMENSION_SIZE;xPosition++)
+			{
+				if(boardState.getBoardsFlagAt(xPosition, yPosition)==gamerID)count++;
+				else if(boardState.getBoardsFlagAt(xPosition, yPosition)==oppGamer){
+					count=-10;
+					break;
+				}
+			}
+			resultHeuristic+=10^count;
+		}
+		
+		int countDiag=0;
+		
+		for (int xPosition =0; xPosition<boardState.DIMENSION_SIZE;xPosition++)
+		{
+			if(boardState.getBoardsFlagAt(xPosition, xPosition)==gamerID)countDiag++;
+			else if(boardState.getBoardsFlagAt(xPosition, xPosition)==oppGamer){
+				countDiag=-10;
+				break;
 			}
 		}
-		return 0;
+		resultHeuristic+=10^countDiag;
+		
+		countDiag =0;
+		int tempPos =boardState.DIMENSION_SIZE;
+		for (int xPosition =0; xPosition<boardState.DIMENSION_SIZE;xPosition++)
+		{
+			tempPos--;
+			if(boardState.getBoardsFlagAt(tempPos, xPosition)==gamerID)countDiag++;
+			else if(boardState.getBoardsFlagAt(tempPos, xPosition)==oppGamer){
+				countDiag=-10;
+				break;
+			}
+		}
+		resultHeuristic+=10^countDiag;
+		return resultHeuristic;
 	}
 
 	@Override
 	public Object getInstance() {
 		
 		return this;
+	}
+
+	@Override
+	public boolean setPiecesIn(int xPos, int yPos, int pieces) {
+		if(pieces == this.GAMER_CROSS)boardState.setCrossAt(xPos, yPos);
+		else boardState.setZeroAt(xPos, yPos);
+		return false;
+	}
+
+	@Override
+	public void changeGamer() {
+	this.thisAgeAt = getInvertGamer();
+		
 	}
 	
 	
