@@ -167,6 +167,7 @@ public class StateGame implements IGameState, Cloneable{
 
 	@Override
 	public int getHeuristicValue(int gamerID) {
+		//GIT HUITA
 		// TODO Auto-generated method stub
 		/*
 		 * return value of heuristic 
