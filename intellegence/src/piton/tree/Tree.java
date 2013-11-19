@@ -195,7 +195,7 @@ public class Tree {
 		
 		ArrayList<IState> childrenStates = currentState.getAllChild(currentState);
 	
-		
+		fristStage.changeGamer();
 		if(fristStage.IsFinState()||maxDepth==0)
 			return fristStage;
 		if(fristStage.getCurrentGamer() ==  fristStage.COMP_GAMER)
