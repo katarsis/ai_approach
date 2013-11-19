@@ -192,7 +192,10 @@ public class Tree {
 		IGameState currentState =  fristStage;
 		IGameState answer = null;
 		//FIXME create a static procedure or delete input parametr
+		
 		ArrayList<IState> childrenStates = currentState.getAllChild(currentState);
+	
+		
 		if(fristStage.IsFinState()||maxDepth==0)
 			return fristStage;
 		if(fristStage.getCurrentGamer() ==  fristStage.COMP_GAMER)
@@ -201,18 +204,24 @@ public class Tree {
 			for(IState child: childrenStates)
 			{
 				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1);
-				if(possibleChild.getHeuristicValue(fristStage.thisAgeAt)>bestScore);
-				answer= possibleChild;
-			}
+				if(possibleChild.getHeuristicValue(fristStage.thisAgeAt)>bestScore)
+				{
+					bestScore = possibleChild.getHeuristicValue(fristStage.thisAgeAt);
+					answer= (IGameState)child;
+				}
+			} 
 		}
-		else if(fristStage.getCurrentGamer() != fristStage.COMP_GAMER)
+		else if(fristStage.getCurrentGamer() == fristStage.HUMAN_GAMER)
 		{
 			int bestScore = INF_MAX;
 			for(IState child: childrenStates)
 			{
 				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1);
-				if(possibleChild.getHeuristicValue(fristStage.thisAgeAt)<bestScore);
-				answer = possibleChild;
+				if(possibleChild.getHeuristicValue(fristStage.thisAgeAt)<bestScore)
+				{
+					bestScore = possibleChild.getHeuristicValue(fristStage.thisAgeAt);
+					answer= (IGameState)child;
+				}
 			}
 		}
 		return answer;

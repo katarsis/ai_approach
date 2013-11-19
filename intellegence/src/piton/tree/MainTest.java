@@ -27,7 +27,7 @@ public class MainTest {
 		    menuItem = Integer.valueOf(bufferRead.readLine());
 			
 			switch(menuItem){
-			case 1: taskTicTacToe();
+			case 1: taskTicTacToe();break;
 			case 0: taskAboutThree();
 			}
 		}
@@ -61,9 +61,12 @@ public class MainTest {
 			StateGame.COMP_GAMER = StateGame.GAMER_CROSS;
 			StateGame.HUMAN_GAMER = StateGame.GAMER_ZERO;
 		}
+		
 		IGameState stateGame =  new StateGame();
+		stateGame.setGamer(StateGame.HUMAN_GAMER);
 		Node start = new Node<IGameState>(stateGame);
 		IGameState currentState =  stateGame;
+	
 		while (!currentState.IsFinState())
 		{
 			answer = reader.readLine();
@@ -71,8 +74,8 @@ public class MainTest {
 			answer = reader.readLine();
 			int yPos = Integer.valueOf(answer);
 			currentState.setPiecesIn(xPos, yPos, currentState.getCurrentGamer());
-			currentState.changeGamer();
-			currentState = Tree.getMinMaxStep(currentState,2);
+			//currentState.changeGamer();
+			currentState = Tree.getMinMaxStep(currentState,1);
 			currentState.changeGamer();
 			currentState.Print();
 		}

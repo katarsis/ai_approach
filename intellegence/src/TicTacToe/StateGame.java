@@ -57,7 +57,7 @@ public class StateGame implements IGameState, Cloneable{
 					{
 						StateGame child = new StateGame();
 						child.boardState = this.boardState.clone();
-						child.thisAgeAt = getInvertGamer();
+						//child.thisAgeAt = getInvertGamer();
 						if(child.thisAgeAt==GAMER_CROSS)
 							child.boardState.setCrossAt(xPosition, yPosition);
 						else
@@ -190,7 +190,7 @@ public class StateGame implements IGameState, Cloneable{
 		
 		for(int xPosition=0;xPosition<boardState.DIMENSION_SIZE;xPosition++)
 		{
-			int count=0;
+			int count=-1;
 			for (int yPosition =0; yPosition<boardState.DIMENSION_SIZE;yPosition++)
 			{
 				if(boardState.getBoardsFlagAt(xPosition, yPosition)==gamerID)count++;
@@ -199,13 +199,13 @@ public class StateGame implements IGameState, Cloneable{
 					break;
 				}
 			}
-			resultHeuristic+=10^count;
+			resultHeuristic+=Math.pow(10, count);
 		}
 		
 		
 		for(int yPosition=0;yPosition<boardState.DIMENSION_SIZE;yPosition++)
 		{
-			int count=0;
+			int count=-1;
 			for (int xPosition =0; xPosition<boardState.DIMENSION_SIZE;xPosition++)
 			{
 				if(boardState.getBoardsFlagAt(xPosition, yPosition)==gamerID)count++;
@@ -214,10 +214,10 @@ public class StateGame implements IGameState, Cloneable{
 					break;
 				}
 			}
-			resultHeuristic+=10^count;
+			resultHeuristic+=Math.pow(10, count);
 		}
 		
-		int countDiag=0;
+		int countDiag=-1;
 		
 		for (int xPosition =0; xPosition<boardState.DIMENSION_SIZE;xPosition++)
 		{
@@ -227,20 +227,20 @@ public class StateGame implements IGameState, Cloneable{
 				break;
 			}
 		}
-		resultHeuristic+=10^countDiag;
+		resultHeuristic+=Math.pow(10, countDiag);
 		
-		countDiag =0;
+		countDiag =-1;
 		int tempPos =boardState.DIMENSION_SIZE;
-		for (int xPosition =0; xPosition<boardState.DIMENSION_SIZE;xPosition++)
+		for (int yPosition =0; yPosition<boardState.DIMENSION_SIZE;yPosition++)
 		{
 			tempPos--;
-			if(boardState.getBoardsFlagAt(tempPos, xPosition)==gamerID)countDiag++;
-			else if(boardState.getBoardsFlagAt(tempPos, xPosition)==oppGamer){
+			if(boardState.getBoardsFlagAt(tempPos, yPosition)==gamerID)countDiag++;
+			else if(boardState.getBoardsFlagAt(tempPos, yPosition)==oppGamer){
 				countDiag=-10;
 				break;
 			}
 		}
-		resultHeuristic+=10^countDiag;
+		resultHeuristic+=Math.pow(10, countDiag);
 		return resultHeuristic;
 	}
 
@@ -261,6 +261,11 @@ public class StateGame implements IGameState, Cloneable{
 	public void changeGamer() {
 	this.thisAgeAt = getInvertGamer();
 		
+	}
+
+	@Override
+	public void setGamer(int inGamer) {
+		this.thisAgeAt = inGamer;
 	}
 	
 	

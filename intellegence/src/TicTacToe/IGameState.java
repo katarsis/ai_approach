@@ -15,4 +15,5 @@ public interface IGameState extends IState {
 	public Object getInstance();
 	public boolean setPiecesIn(int xPos, int yPos, int pieces);
 	public void changeGamer();
+	public void setGamer(int inGamer);
 }
