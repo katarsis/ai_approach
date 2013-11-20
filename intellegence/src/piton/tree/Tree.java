@@ -217,9 +217,9 @@ public class Tree {
 			for(IState child: childrenStates)
 			{
 				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1);
-				if(possibleChild.getHeuristicValue(fristStage.thisAgeAt)<bestScore)
+				if(-1*possibleChild.getHeuristicValue(fristStage.thisAgeAt)<bestScore)
 				{
-					bestScore = possibleChild.getHeuristicValue(fristStage.thisAgeAt);
+					bestScore = -1*possibleChild.getHeuristicValue(fristStage.thisAgeAt);
 					answer= (IGameState)child;
 				}
 			}
