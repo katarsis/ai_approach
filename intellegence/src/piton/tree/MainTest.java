@@ -75,8 +75,8 @@ public class MainTest {
 			int yPos = Integer.valueOf(answer);
 			currentState.setPiecesIn(xPos, yPos, currentState.getCurrentGamer());
 			//currentState.changeGamer();
-			currentState = Tree.getMinMaxStep(currentState,2);
-			//currentState.changeGamer();
+			currentState = Tree.getMinMaxStep(currentState,2,StateGame.COMP_GAMER);
+			currentState.changeGamer();
 			currentState.Print();
 		}
 		

@@ -179,7 +179,7 @@ public class Tree {
 	 * @param	maxDepth		the max node depth for terminal state
 	 * @return	goalNode		the computer step state	
 	 */
-	public static IGameState getMinMaxStep(IGameState currentStep, int maxDepth)
+	public static IGameState getMinMaxStep(IGameState currentStep, int maxDepth, int gamerID)
 	{
 		/*
 		 * implements min max algoritm
@@ -191,38 +191,42 @@ public class Tree {
 		StateGame fristStage = (StateGame)currentStep.getInstance();
 		IGameState currentState =  fristStage;
 		IGameState answer = null;
+		int oppGamer= (gamerID==StateGame.COMP_GAMER)?StateGame.HUMAN_GAMER:StateGame.COMP_GAMER;
 		//FIXME create a static procedure or delete input parametr
 		
 		ArrayList<IState> childrenStates = currentState.getAllChild(currentState);
 	
-		fristStage.changeGamer();
+		
 		if(fristStage.IsFinState()||maxDepth==0)
 			return fristStage;
-		if(fristStage.getCurrentGamer() ==  fristStage.COMP_GAMER)
+		if(gamerID ==  fristStage.COMP_GAMER)
 		{
 			int bestScore = INF_MIN;
 			for(IState child: childrenStates)
 			{
-				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1);
-				if(possibleChild.getHeuristicValue(fristStage.thisAgeAt)>bestScore)
+				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1,oppGamer);
+				if(possibleChild.getHeuristicValue(gamerID)>bestScore)
 				{
-					bestScore = possibleChild.getHeuristicValue(fristStage.thisAgeAt);
+					bestScore = possibleChild.getHeuristicValue(gamerID);
 					answer= (IGameState)child;
 				}
+				answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
 			} 
+			answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
 		}
-		else if(fristStage.getCurrentGamer() == fristStage.HUMAN_GAMER)
+		else if(gamerID == fristStage.HUMAN_GAMER)
 		{
 			int bestScore = INF_MAX;
 			for(IState child: childrenStates)
 			{
-				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1);
-				if(-1*possibleChild.getHeuristicValue(fristStage.thisAgeAt)<bestScore)
+				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1,oppGamer);
+				if(-1*possibleChild.getHeuristicValue(gamerID)<bestScore)
 				{
-					bestScore = -1*possibleChild.getHeuristicValue(fristStage.thisAgeAt);
+					bestScore = -1*possibleChild.getHeuristicValue(gamerID);
 					answer= (IGameState)child;
 				}
 			}
+			answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
 		}
 		return answer;
 		
