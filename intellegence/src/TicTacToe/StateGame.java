@@ -184,7 +184,7 @@ public class StateGame implements IGameState, Cloneable{
 		int resultHeuristic =0;
 		int oppGamer =0;
 		if(gamerID == StateGame.COMP_GAMER)
-			oppGamer=StateGame.GAMER_ZERO;
+			oppGamer=StateGame.HUMAN_GAMER;
 		else
 			oppGamer =StateGame.COMP_GAMER;
 		

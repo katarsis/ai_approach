@@ -210,9 +210,9 @@ public class Tree {
 					bestScore = possibleChild.getHeuristicValue(gamerID);
 					answer= (IGameState)child;
 				}
-				answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
+			//	answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
 			} 
-			answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
+			//answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
 		}
 		else if(gamerID == fristStage.HUMAN_GAMER)
 		{
@@ -226,7 +226,7 @@ public class Tree {
 					answer= (IGameState)child;
 				}
 			}
-			answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
+		//	answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
 		}
 		return answer;
 		
