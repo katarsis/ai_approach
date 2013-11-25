@@ -11,11 +11,16 @@ public class Player implements Serializable{
 	}
 	
 	public enum PlayerTypes{
-		computer,human;
+		computer,human,undefined;
 	}
 	
 	Colors color;
 	PlayerTypes playerType;
+	
+	public Player()
+	{
+		this.playerType = PlayerTypes.undefined;	
+	}
 	
 	public Player(Colors color, PlayerTypes type){
 		this.color = color;
