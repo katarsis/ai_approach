@@ -1,9 +1,18 @@
 package chess;
 
+import java.util.ArrayList;
+
 public class Rook extends Piece{
 
-	public Rook()
+	public Rook(Player player)
 	{
-		super();
+		super(player);
+		this.symbol ="R";
+	}
+
+	@Override
+	public ArrayList getAllMovies() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

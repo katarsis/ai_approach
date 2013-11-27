@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import chess.*;
 import TicTacToe.IGameState;
 import TicTacToe.MainWindow;
 import TicTacToe.StateGame;
@@ -29,6 +30,7 @@ public class MainTest {
 			switch(menuItem){
 			case 1: taskTicTacToe();break;
 			case 0: taskAboutThree();
+			case 2: chessTask();
 			}
 		}
 		catch (Exception e) 
@@ -36,6 +38,14 @@ public class MainTest {
 			e.printStackTrace();
 			System.out.println("Somthing bad");
 		}
+	}
+	
+	public static void chessTask() 
+	{
+		ChessBoard chessBoard = new ChessBoard();
+		chessBoard.setDefaultPieces();
+		chessBoard.print();
+	
 	}
 	
 	public static void taskTicTacToe() throws IOException

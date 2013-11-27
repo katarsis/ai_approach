@@ -5,7 +5,7 @@ public int xPosition;
 public int yPosition;
 public Piece piece=null;
 
-public Square(int xPos, int yPos, Piece piece)
+public Square(int xPos, int yPos, Piece piece )
 {
 	this.xPosition = xPos;
 	this.yPosition = yPos;
@@ -24,6 +24,13 @@ public Square clone(){
 
 public void setPiece(Piece piece){
 	this.piece=piece;
+}
+
+public String print(){
+	if(piece!=null)
+	return piece.getSymbol();
+	else
+		return " ";
 }
 
 }
