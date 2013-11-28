@@ -6,7 +6,7 @@ public class Queen extends Piece{
 
 	public Queen(Player player){
 		super(player);
-		this.symbol = "Q";
+		this.symbol = "Q ";
 	}
 	@Override
 	public ArrayList getAllMovies() {

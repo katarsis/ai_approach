@@ -6,7 +6,7 @@ public class Bishop extends Piece{
 
 	public Bishop(Player player){
 		super(player);
-		this.symbol ="B";
+		this.symbol ="B ";
 	}
 	@Override
 	public ArrayList getAllMovies() {

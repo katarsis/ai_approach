@@ -7,7 +7,7 @@ public class Rook extends Piece{
 	public Rook(Player player)
 	{
 		super(player);
-		this.symbol ="R";
+		this.symbol ="R ";
 	}
 
 	@Override

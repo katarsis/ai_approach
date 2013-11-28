@@ -11,7 +11,7 @@ public class Pawn extends Piece {
 	public Pawn(Player player)
 	{
 		super(player);
-		this.symbol = "P";
+		this.symbol = "P ";
 	}
 
 	@Override

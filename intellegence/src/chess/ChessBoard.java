@@ -28,14 +28,14 @@ public void setDefaultPieces()
 	//set the white pieces
 	for(int xPostion = 0; xPostion <DIMENSION; xPostion++)
 		chessFeilds[xPostion][1] = new Square(xPostion,1,new Pawn(playerWhite));
-	chessFeilds[0][1] =  new Square(0,0, new Rook(playerWhite));
-	chessFeilds[1][1] =  new Square(1,0, new King(playerWhite));
-	chessFeilds[2][1] =  new Square(2,0, new Bishop(playerWhite));
-	chessFeilds[3][1] =  new Square(3,0, new Queen(playerWhite));
-	chessFeilds[4][1] = new Square(4,0,new Knight(playerWhite));
-	chessFeilds[5][1] = new Square(5,0,new Bishop(playerWhite));
-	chessFeilds[6][1] = new Square(6,0,new King(playerWhite));
-	chessFeilds[7][1] = new Square(7,0,new Rook(playerWhite));
+	chessFeilds[0][0] =  new Square(0,0, new Rook(playerWhite));
+	chessFeilds[1][0] =  new Square(1,0, new King(playerWhite));
+	chessFeilds[2][0] =  new Square(2,0, new Bishop(playerWhite));
+	chessFeilds[3][0] =  new Square(3,0, new Queen(playerWhite));
+	chessFeilds[4][0] = new Square(4,0,new Knight(playerWhite));
+	chessFeilds[5][0] = new Square(5,0,new Bishop(playerWhite));
+	chessFeilds[6][0] = new Square(6,0,new King(playerWhite));
+	chessFeilds[7][0] = new Square(7,0,new Rook(playerWhite));
 	//set the black pieces
 	for(int xPosition =0;xPosition< DIMENSION;xPosition++)
 		chessFeilds[xPosition][6] = new Square(xPosition, 6, new Pawn(playerBlack));
@@ -60,7 +60,7 @@ public void print(){
 			outLine+=chessFeilds[xPosition][yPosition].print()+"|";
 		}
 		System.out.println(outLine);
-		System.out.println("--------------------------------");
+		//System.out.println("-------------------------");
 		outLine ="";
 	}
 }

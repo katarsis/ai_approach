@@ -30,7 +30,7 @@ public String print(){
 	if(piece!=null)
 	return piece.getSymbol();
 	else
-		return " ";
+		return "__";
 }
 
 }
