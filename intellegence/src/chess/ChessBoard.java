@@ -8,6 +8,8 @@ import chess.Player.PlayerTypes;
 public class ChessBoard {
 public static final int DIMENSION=8;
 private Square chessFeilds[][];
+public King whiteKing;
+public King blackKing;
 
 public ChessBoard(){
 	chessFeilds = new Square[DIMENSION][DIMENSION];
@@ -63,6 +65,26 @@ public void print(){
 		//System.out.println("-------------------------");
 		outLine ="";
 	}
+}
+
+public Square getChessFeilds(int x, int y) {
+	return chessFeilds[x][y];
+}
+
+public ChessBoard clone()
+{
+	ChessBoard returnedChess = new ChessBoard();
+	returnedChess.chessFeilds =  new Square[DIMENSION][DIMENSION];
+	for(int xPosition =0 ; xPosition<DIMENSION;xPosition++)
+		for(int yPosition=0;yPosition<DIMENSION;yPosition++)
+			returnedChess.chessFeilds[xPosition][yPosition] = this.chessFeilds[xPosition][yPosition];
+	returnedChess.blackKing = this.blackKing;
+	returnedChess.whiteKing = this.whiteKing;
+	return returnedChess;
+}
+
+public void setChessAt(Square setSquare){
+	this.chessFeilds[setSquare.xPosition][setSquare.yPosition] = setSquare;
 }
 
 }

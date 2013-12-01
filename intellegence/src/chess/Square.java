@@ -33,4 +33,10 @@ public String print(){
 		return "__";
 }
 
+public boolean isEmpty(){
+	if(this.piece!=null)
+		return false;
+	return true;
+}
+
 }
