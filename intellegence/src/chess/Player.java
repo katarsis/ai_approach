@@ -6,7 +6,7 @@ public class Player implements Serializable{
 
 	String name;
 	
-	enum Colors {
+	public enum Colors {
 		black,white;
 	}
 	

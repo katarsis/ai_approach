@@ -1,6 +1,7 @@
 package piton.tree;
 
 import java.awt.List;
+import java.awt.MultipleGradientPaint.ColorSpaceType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +12,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import chess.*;
+import chess.Player.Colors;
+import chess.Player.PlayerTypes;
 import TicTacToe.IGameState;
 import TicTacToe.MainWindow;
 import TicTacToe.StateGame;
@@ -45,7 +48,13 @@ public class MainTest {
 		ChessBoard chessBoard = new ChessBoard();
 		chessBoard.setDefaultPieces();
 		chessBoard.print();
-	
+		Player startPlayer = new Player(Colors.white ,PlayerTypes.human);
+		
+		IState initalStateOfGame  =  new StateChess(chessBoard, startPlayer);	
+		for(IState currentState: initalStateOfGame.getAllChild(initalStateOfGame))
+		{
+			currentState.Print();
+		}
 	}
 	
 	public static void taskTicTacToe() throws IOException
