@@ -52,11 +52,11 @@ public class Pawn extends Piece {
 			}
 			//if field on [x+1][y+1] or [x-1][y+1] is other owner put it on possible move
 			{
-				if( this.isOtherGamer(this.currentSquare.xPosition+1, this.currentSquare.yPosition+1, currentChessBoardState))
+				if(!isOut( this.currentSquare.xPosition+1, this.currentSquare.yPosition+1)&&this.isOtherGamer(this.currentSquare.xPosition+1, this.currentSquare.yPosition+1, currentChessBoardState))
 				{
 					possibleMovies.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+1, this.currentSquare.yPosition+1));
 				}
-				if( this.isOtherGamer(this.currentSquare.xPosition-1, this.currentSquare.yPosition+1, currentChessBoardState))
+				if( !isOut( this.currentSquare.xPosition-1, this.currentSquare.yPosition+1)&& this.isOtherGamer(this.currentSquare.xPosition-1, this.currentSquare.yPosition+1, currentChessBoardState))
 				{
 					possibleMovies.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-1, this.currentSquare.yPosition+1));
 				}
@@ -79,11 +79,11 @@ public class Pawn extends Piece {
 			}
 			//if field on [x+1][y-1] or [x-1][y-1] is other owner put it on possible move
 			{
-				if( this.isOtherGamer(this.currentSquare.xPosition+1, this.currentSquare.yPosition-1, currentChessBoardState))
+				if( !isOut(this.currentSquare.xPosition+1, this.currentSquare.yPosition-1) && this.isOtherGamer(this.currentSquare.xPosition+1, this.currentSquare.yPosition-1, currentChessBoardState))
 				{
 					possibleMovies.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+1, this.currentSquare.yPosition-1));
 				}
-				if( this.isOtherGamer(this.currentSquare.xPosition-1, this.currentSquare.yPosition-1, currentChessBoardState))
+				if( !isOut(this.currentSquare.xPosition-1, this.currentSquare.yPosition-1) && this.isOtherGamer(this.currentSquare.xPosition-1, this.currentSquare.yPosition-1, currentChessBoardState))
 				{
 					possibleMovies.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-1, this.currentSquare.yPosition-1));
 				}

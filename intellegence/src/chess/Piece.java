@@ -20,6 +20,7 @@ public Piece() {
 public Piece(Player player)
 {
 	this.player =player;
+	this.color = player.color;
 }
 
 abstract public ArrayList getAllMovies(ChessBoard currentChessBoardState);
@@ -36,7 +37,7 @@ public boolean isOut(int x, int y){
 
 public boolean isOtherGamer(int x, int y, ChessBoard currentChessBoardState){
 	Square chekedFeild = currentChessBoardState.getChessFeilds(x, y);
-	if(this.player != chekedFeild.piece.player)
+	if(chekedFeild.piece!=null&&this.player != chekedFeild.piece.player)
 		return true;
 	return false;
 }

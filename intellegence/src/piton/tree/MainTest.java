@@ -31,8 +31,8 @@ public class MainTest {
 		    menuItem = Integer.valueOf(bufferRead.readLine());
 			
 			switch(menuItem){
-			case 1: taskTicTacToe();break;
 			case 0: taskAboutThree();
+			case 1: taskTicTacToe();break;
 			case 2: chessTask();
 			}
 		}
