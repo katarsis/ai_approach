@@ -166,5 +166,9 @@ public class Queen extends Piece{
 		}
 		return answerMovies;
 	}
+	@Override
+	public Piece copy() {
+		return new Queen(player);
+	}
 
 }

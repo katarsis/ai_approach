@@ -106,4 +106,9 @@ public class Pawn extends Piece {
 		}
 		return answerMoves;
 	}
+
+	@Override
+	public Piece copy() {
+		return new Pawn(player);
+	}
 }

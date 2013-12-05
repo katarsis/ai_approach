@@ -113,5 +113,9 @@ public class Bishop extends Piece{
 		}
 		return answerMovies;
 	}
+	@Override
+	public Piece copy() {
+		return new Pawn(this.player);
+	}
 
 }

@@ -104,13 +104,12 @@ public void print(){
 			outLine+=chessFeilds[xPosition][yPosition].print()+"|";
 		}
 		System.out.println(outLine);
-		//System.out.println("-------------------------");
 		outLine ="";
 	}
 }
 
 public Square getChessFeilds(int x, int y) {
-	return chessFeilds[x][y];
+	return chessFeilds[x][y].clone();
 }
 
 public ChessBoard clone()
@@ -119,7 +118,7 @@ public ChessBoard clone()
 	returnedChess.chessFeilds =  new Square[DIMENSION][DIMENSION];
 	for(int xPosition =0 ; xPosition<DIMENSION;xPosition++)
 		for(int yPosition=0;yPosition<DIMENSION;yPosition++)
-			returnedChess.chessFeilds[xPosition][yPosition] = this.chessFeilds[xPosition][yPosition];
+			returnedChess.chessFeilds[xPosition][yPosition] = this.chessFeilds[xPosition][yPosition].clone();
 	returnedChess.blackKing = this.blackKing;
 	returnedChess.whiteKing = this.whiteKing;
 	return returnedChess;

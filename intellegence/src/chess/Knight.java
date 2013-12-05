@@ -20,14 +20,14 @@ public class Knight extends Piece{
 		ArrayList<Square> possibleMove = new ArrayList<>();
 		ArrayList<Square> answerMoves = new ArrayList<>();
 		
-		possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+2, this.currentSquare.yPosition+1));
-		possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+2, this.currentSquare.yPosition-1));
-		possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-2, this.currentSquare.yPosition+1));
-		possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-2, this.currentSquare.yPosition-1));
-		possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+1, this.currentSquare.yPosition+2));
-		possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+1, this.currentSquare.yPosition-2));
-		possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-1, this.currentSquare.yPosition+2));
-		possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-1, this.currentSquare.yPosition-2));
+		if(!this.isOut(this.currentSquare.xPosition+2, this.currentSquare.yPosition+1))possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+2, this.currentSquare.yPosition+1));
+		if(!this.isOut(this.currentSquare.xPosition+2, this.currentSquare.yPosition-1))possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+2, this.currentSquare.yPosition-1));
+		if(!this.isOut(this.currentSquare.xPosition-2, this.currentSquare.yPosition+1))possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-2, this.currentSquare.yPosition+1));
+		if(!this.isOut(this.currentSquare.xPosition-2, this.currentSquare.yPosition-1))possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-2, this.currentSquare.yPosition-1));
+		if(!this.isOut(this.currentSquare.xPosition+1, this.currentSquare.yPosition+2))possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+1, this.currentSquare.yPosition+2));
+		if(!this.isOut(this.currentSquare.xPosition+1, this.currentSquare.yPosition-2))possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition+1, this.currentSquare.yPosition-2));
+		if(!this.isOut(this.currentSquare.xPosition-1, this.currentSquare.yPosition+2))possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-1, this.currentSquare.yPosition+2));
+		if(!this.isOut(this.currentSquare.xPosition-1, this.currentSquare.yPosition-2))possibleMove.add(currentChessBoardState.getChessFeilds(this.currentSquare.xPosition-1, this.currentSquare.yPosition-2));
 		
 		for(Square newSquare: possibleMove)
 		{
@@ -56,7 +56,11 @@ public class Knight extends Piece{
 			}
 		}
 			
-		return null;
+		return answerMoves;
+	}
+	@Override
+	public Piece copy() {
+		return new Knight(player);
 	}
 
 }

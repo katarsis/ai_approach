@@ -107,4 +107,9 @@ public class Rook extends Piece{
 		}
 		return answerMove;
 	}
+
+	@Override
+	public Piece copy() {
+		return new Rook(player);
+	}
 }

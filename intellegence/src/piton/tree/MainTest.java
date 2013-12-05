@@ -53,7 +53,7 @@ public class MainTest {
 		IState initalStateOfGame  =  new StateChess(chessBoard, startPlayer);	
 		for(IState currentState: initalStateOfGame.getAllChild(initalStateOfGame))
 		{
-			currentState.Print();
+		//	currentState.Print();
 		}
 	}
 	

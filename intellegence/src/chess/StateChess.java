@@ -71,10 +71,11 @@ public class StateChess implements IGameState{
 				if(currentSquare.piece!=null && currentSquare.piece.player.color!= currentPlayer.color)
 				{
 					ArrayList<Square> possibleState = currentSquare.piece.getAllMovies(chessBoard);
+					if(possibleState!=null)
 					for(Square newSquare: possibleState){
 					 StateChess newState = new StateChess();
 					 ChessBoard newChessBoardState  =  chessBoard.clone();
-					 newSquare.piece = currentSquare.piece;
+					 newSquare.piece = (Piece)currentSquare.piece.copy();
 					 newChessBoardState.setChessAt(newSquare);
 					 Square oldSquare = new Square(xPosition, yPosition);
 					 newChessBoardState.setChessAt(oldSquare);					 
@@ -82,7 +83,8 @@ public class StateChess implements IGameState{
 					 newState.currentPlayer =  newSquare.piece.player;
 					 //newState.utility =  getHeuristicValue();
 					 childsState.add(newState);
-					 System.out.println();
+					 System.out.println("************************** ");
+					 System.out.println(" ");
 					 newChessBoardState.print();
 					}
 				}

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import chess.Player.Colors;
 import chess.Player.PlayerTypes;
 
-public abstract class Piece {
+public abstract class Piece implements Cloneable{
 public Player player;
 public Colors color;
 public Square currentSquare;
@@ -41,5 +41,6 @@ public boolean isOtherGamer(int x, int y, ChessBoard currentChessBoardState){
 		return true;
 	return false;
 }
+public abstract Piece copy();
 
 }
