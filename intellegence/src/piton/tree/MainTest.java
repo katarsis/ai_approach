@@ -54,7 +54,7 @@ public class MainTest {
 		{
 		//	currentState.Print();
 		}*/
-		Display display =  new Display();
+		/*Display display =  new Display();
 		Shell shell =  new Shell(display);
 		MainWindow game = new MainWindow(shell,0);
 		shell.pack();
@@ -63,7 +63,7 @@ public class MainTest {
 			if (!display.readAndDispatch ()) display.sleep ();
 			
 		}
-		display.dispose ();
+		display.dispose ();*/
 	}
 	
 	public static void taskTicTacToe() throws IOException
