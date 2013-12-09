@@ -15,7 +15,6 @@ import chess.*;
 import chess.Player.Colors;
 import chess.Player.PlayerTypes;
 import TicTacToe.IGameState;
-import TicTacToe.MainWindow;
 import TicTacToe.StateGame;
 
 
@@ -45,7 +44,7 @@ public class MainTest {
 	
 	public static void chessTask() 
 	{
-		ChessBoard chessBoard = new ChessBoard();
+		/*ChessBoard chessBoard = new ChessBoard();
 		chessBoard.setDefaultPieces();
 		chessBoard.print();
 		Player startPlayer = new Player(Colors.white ,PlayerTypes.human);
@@ -54,7 +53,17 @@ public class MainTest {
 		for(IState currentState: initalStateOfGame.getAllChild(initalStateOfGame))
 		{
 		//	currentState.Print();
+		}*/
+		Display display =  new Display();
+		Shell shell =  new Shell(display);
+		MainWindow game = new MainWindow(shell,0);
+		shell.pack();
+		shell.open();
+		while (!shell.isDisposed ()) {
+			if (!display.readAndDispatch ()) display.sleep ();
+			
 		}
+		display.dispose ();
 	}
 	
 	public static void taskTicTacToe() throws IOException
