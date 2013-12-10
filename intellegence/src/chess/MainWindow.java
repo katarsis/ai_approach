@@ -27,10 +27,9 @@ public class MainWindow extends JFrame {
 	
 	public final void initUI(){
 		ChessView pnl = new ChessView();
-		Container con =  getContentPane();
-		con.setLayout(null);
-		con.add(pnl);
-		setSize(400, 400);
+		this.add(pnl);
+		this.validate();
+		setSize(408, 425);
         setTitle("Lines");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
