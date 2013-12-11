@@ -1,7 +1,6 @@
 package chess;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.util.ArrayList;
 
 import chess.Player.Colors;
@@ -12,7 +11,6 @@ public Player player;
 public Colors color;
 public Square currentSquare;
 String symbol;
-public Image imagePiece;
 
 public Piece() {
 	player.playerType = PlayerTypes.undefined;
@@ -46,5 +44,3 @@ public boolean isOtherGamer(int x, int y, ChessBoard currentChessBoardState){
 public abstract Piece copy();
 
 }
-
-
