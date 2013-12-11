@@ -33,10 +33,10 @@ public class MainWindow extends JFrame {
 		pnl.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		pnl.repaint();
 		pnl.setVisible(true);
-		this.setSize(408, 425);
+		this.setSize(310, 340);
 		this.getContentPane().add(pnl);
 		this.validate();
-		setTitle("Lines");
+		setTitle("Chess");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         
