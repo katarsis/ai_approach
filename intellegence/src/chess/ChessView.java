@@ -10,16 +10,11 @@ import java.lang.*;
 
 public class ChessView extends JPanel {
 	Image image;
-	 Image img ;
+	 Image img  = Utilits.loadImage("chessboard.png");
 	public ChessView(){
 		Dimension size = new Dimension(400,400);
+		this.setOpaque(true);
 		setSize(size);
-		Toolkit tools =  Toolkit.getDefaultToolkit();
-		  String imageLink = "img/images.org/chessboard.png";
-		URL url = null;
-        url = getClass().getResource(imageLink);
-        img = tools.getImage(url);
-		setLayout(null);
 	}
 	
 	private void doDrawing(Graphics g) {
@@ -33,8 +28,8 @@ public class ChessView extends JPanel {
             imageGr.dispose();
             image = resized.getScaledInstance(400, 400, 0);
 	        //imageGr.drawImage(img, 0, 0, 200,200,null);
-	        g2d.drawImage(img, 0, 0, null);
-	        
+	        g2d.drawImage(image, 0, 0, this);
+	        g2d.dispose();
     }
 	 
 	@Override
