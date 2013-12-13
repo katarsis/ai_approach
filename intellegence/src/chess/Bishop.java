@@ -1,14 +1,28 @@
 package chess;
 
+import java.awt.Image;
 import java.util.ArrayList;
 
 import chess.Player.Colors;
 
 public class Bishop extends Piece{
 
+	protected static final Image imageWhite = Utilits.loadImage("Bishop-W.png");
+	protected static final Image imageBlack = Utilits.loadImage("Bishop-B.png");
+
+
 	public Bishop(Player player){
 		super(player);
 		this.symbol ="B ";
+		if(player.color == Colors.black)
+		{
+			imagePiece = imageBlack;
+		}
+		else if(player.color ==  Colors.white)
+		{
+			imagePiece = imageWhite;
+		}
+		originImage = imagePiece;
 	}
 	@Override
 	/*
@@ -16,6 +30,18 @@ public class Bishop extends Piece{
 	 * @param currentChessBoard	the current state of chess boards
 	 */
 	public ArrayList getAllMovies(ChessBoard currentChessBoardState) {
+		
+		ArrayList<Square> possibleMove = new ArrayList<>();
+		possibleMove = getAllPossibleMoves(currentChessBoardState);
+		return getSafetyState(currentChessBoardState, possibleMove, currentSquare);
+	}
+	@Override
+	public Piece copy() {
+		return new Bishop(this.player);
+	}
+	
+	@Override
+	public ArrayList getAllPossibleMoves(ChessBoard currentChessBoardState) {
 		/*
 		 * for each square on the diagonal right-up 
 		 * if it's empty field or field other player add to possible move
@@ -23,10 +49,8 @@ public class Bishop extends Piece{
 		 * if it's empty field or field other player add to possible move
 		 * for each possible move if after move the king will attacked remove it move
 		 */
-		
 		ArrayList<Square> possibleMove = new ArrayList<>();
-		ArrayList<Square> answerMovies = new ArrayList<>();
-		
+			
 		for(int x=this.currentSquare.xPosition-1, y=this.currentSquare.yPosition+1;!isOut(x, y);x--,y++)
 		{
 			if(currentChessBoardState.getChessFeilds(x, y).isEmpty())
@@ -94,28 +118,7 @@ public class Bishop extends Piece{
 				break;
 			}
 		}
-		
-		for(Square newSquare: possibleMove)
-		{
-			if (this.color == Colors.white)
-			{
-				ChessBoard temporaryChess= currentChessBoardState.clone();
-				temporaryChess.setChessAt(newSquare);
-				if(!temporaryChess.whiteKing.isCheked())answerMovies.add(newSquare);
-			}
-			if (this.color == Colors.black)
-			{
-				ChessBoard temporaryChess= currentChessBoardState.clone();
-				temporaryChess.setChessAt(newSquare);
-				if(!temporaryChess.blackKing.isCheked())answerMovies.add(newSquare);
-			}
-				
-		}
-		return answerMovies;
-	}
-	@Override
-	public Piece copy() {
-		return new Pawn(this.player);
+		return possibleMove;
 	}
 
 }

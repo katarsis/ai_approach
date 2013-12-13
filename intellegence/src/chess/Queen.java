@@ -1,20 +1,43 @@
 package chess;
 
+import java.awt.Image;
 import java.util.ArrayList;
 
 import chess.Player.Colors;
 
 public class Queen extends Piece{
 
+
+	protected static final Image imageWhite = Utilits.loadImage("Queen-W.png");
+	protected static final Image imageBlack = Utilits.loadImage("Queen-B.png");
+
 	public Queen(Player player){
 		super(player);
 		this.symbol = "Q ";
+		if(player.color== Colors.black)
+		{
+			imagePiece = imageBlack;
+		}
+		else if(player.color == Colors.white)
+		{
+			imagePiece = imageWhite;
+		}
+		originImage = imagePiece;
 	}
 	@Override
 	public ArrayList getAllMovies(ChessBoard currentChessBoardState) {
 		// include metods for bishop and rook
 		ArrayList<Square> possibleMove = new ArrayList<>();
-		ArrayList<Square> answerMovies = new ArrayList<>();
+		possibleMove = getAllPossibleMoves(currentChessBoardState);
+		return getSafetyState(currentChessBoardState, possibleMove, currentSquare);
+	}
+	@Override
+	public Piece copy() {
+		return new Queen(player);
+	}
+	@Override
+	public ArrayList getAllPossibleMoves(ChessBoard currentChessBoardState) {
+		ArrayList<Square> possibleMove = new ArrayList<>();
 		
 		for(int x=this.currentSquare.xPosition-1, y=this.currentSquare.yPosition+1;!isOut(x, y);x--,y++)
 		{
@@ -147,28 +170,7 @@ public class Queen extends Piece{
 				break;
 			}
 		}
-
-		for(Square newSquare: possibleMove)
-		{
-			if (this.color == Colors.white)
-			{
-				ChessBoard temporaryChess= currentChessBoardState.clone();
-				temporaryChess.setChessAt(newSquare);
-				if(!temporaryChess.whiteKing.isCheked())answerMovies.add(newSquare);
-			}
-			if (this.color == Colors.black)
-			{
-				ChessBoard temporaryChess= currentChessBoardState.clone();
-				temporaryChess.setChessAt(newSquare);
-				if(!temporaryChess.blackKing.isCheked())answerMovies.add(newSquare);
-			}
-				
-		}
-		return answerMovies;
-	}
-	@Override
-	public Piece copy() {
-		return new Queen(player);
+		return possibleMove;
 	}
 
 }

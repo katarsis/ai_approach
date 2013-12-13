@@ -1,6 +1,7 @@
 package chess;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.util.ArrayList;
 
 import chess.Player.Colors;
@@ -14,7 +15,9 @@ public class Pawn extends Piece {
 	/*
 	 * represents the pawn piece
 	 */
-	
+	protected static final Image imageWhite = Utilits.loadImage("Pawn-W.png");
+	protected static final Image imageBlack = Utilits.loadImage("Pawn-B.png");
+	   
 	/*
 	 * Constructor
 	 * @param player	the initial player for this piece
@@ -23,6 +26,14 @@ public class Pawn extends Piece {
 	{
 		super(player);
 		this.symbol = "P ";
+		if(player.color == Colors.black){
+			imagePiece = imageBlack;
+		}
+		else if (player.color == Colors.white)
+		{
+			imagePiece = imageWhite;
+		}
+		originImage = imagePiece;
 	}
 
 	@Override
@@ -31,13 +42,28 @@ public class Pawn extends Piece {
 	 * @param currentChessBoard	the current state of chess boards
 	 */
 	public ArrayList getAllMovies(ChessBoard currentChessBoardState) {
+		
+		//if after move king will be attacked delete it from the possible move
+		ArrayList<Square> possibleMovies = new  ArrayList<>();
+		possibleMovies = getAllPossibleMoves(currentChessBoardState);
+		return getSafetyState(currentChessBoardState, possibleMovies, currentSquare);
+	}
+
+	@Override
+	public Piece copy() {
+		return new Pawn(player);
+	}
+
+
+
+	@Override
+	public ArrayList getAllPossibleMoves(ChessBoard currentChessBoardState) {
 		/*
 		 * if after move king will be attacked delete it from the possible move
 		 */
 		 ArrayList<Square> possibleMovies = new  ArrayList<>();
-		 ArrayList<Square> answerMoves = new ArrayList<>();
 		// if player is white then 
-		if(this.color == Colors.white){
+		if(this.color == Colors.black){
 			//if field on [x][y+2] or [x][y+1] is empty put it on possible move
 			for(int i=1; i<3; i++ )
 			{
@@ -63,7 +89,7 @@ public class Pawn extends Piece {
 			}
 		}
 		// if player is black then 
-		else if(this.color == Colors.black)
+		else if(this.color == Colors.white)
 		{
 			//if field on [x][y-2] or [x][y-1] is empty put it on possible move
 			for(int i=1; i<3; i++ )
@@ -89,26 +115,6 @@ public class Pawn extends Piece {
 				}
 			}
 		}
-		//if after move king will be attacked delete it from the possible move
-		for(Square newSquare: possibleMovies){
-			if (this.color == Colors.white)
-			{
-				ChessBoard temporaryChess= currentChessBoardState.clone();
-				temporaryChess.setChessAt(newSquare);
-				if(!temporaryChess.whiteKing.isCheked())answerMoves.add(newSquare);
-			}
-			if (this.color == Colors.black)
-			{
-				ChessBoard temporaryChess= currentChessBoardState.clone();
-				temporaryChess.setChessAt(newSquare);
-				if(!temporaryChess.blackKing.isCheked())answerMoves.add(newSquare);
-			}
-		}
-		return answerMoves;
-	}
-
-	@Override
-	public Piece copy() {
-		return new Pawn(player);
+		return possibleMovies;
 	}
 }

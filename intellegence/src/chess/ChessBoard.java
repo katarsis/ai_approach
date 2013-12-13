@@ -34,7 +34,7 @@ public void setDefaultPieces()
 	for(int xPostion = 0; xPostion <DIMENSION; xPostion++)
 		{
 			chessFeilds[xPostion][1] = new Square(xPostion,1);
-			chessFeilds[xPostion][1].setPiece(new Pawn(playerWhite));
+			chessFeilds[xPostion][1].setPiece(new Pawn(playerBlack));
 		}
 	chessFeilds[0][0] = new Square(0,0);
 	chessFeilds[1][0] = new Square(1,0);
@@ -44,14 +44,14 @@ public void setDefaultPieces()
 	chessFeilds[5][0] = new Square(5,0);
 	chessFeilds[6][0] = new Square(6,0);
 	chessFeilds[7][0] = new Square(7,0);
-	chessFeilds[0][0].setPiece(new Rook(playerWhite));
-	chessFeilds[1][0].setPiece(new Knight(playerWhite));
-	chessFeilds[2][0].setPiece(new Bishop(playerWhite));
-	chessFeilds[3][0].setPiece(new Queen(playerWhite));
-	chessFeilds[4][0].setPiece(new King(playerWhite));
-	chessFeilds[5][0].setPiece(new Bishop(playerWhite));
-	chessFeilds[6][0].setPiece(new Knight(playerWhite));
-	chessFeilds[7][0].setPiece(new Rook(playerWhite));
+	chessFeilds[0][0].setPiece(new Rook(playerBlack));
+	chessFeilds[1][0].setPiece(new Knight(playerBlack));
+	chessFeilds[2][0].setPiece(new Bishop(playerBlack));
+	chessFeilds[3][0].setPiece(new Queen(playerBlack));
+	chessFeilds[4][0].setPiece(new King(playerBlack));
+	chessFeilds[5][0].setPiece(new Bishop(playerBlack));
+	chessFeilds[6][0].setPiece(new Knight(playerBlack));
+	chessFeilds[7][0].setPiece(new Rook(playerBlack));
 	chessFeilds[0][0].piece.currentSquare =	chessFeilds[0][0];
 	chessFeilds[1][0].piece.currentSquare =	chessFeilds[1][0];
 	chessFeilds[2][0].piece.currentSquare =	chessFeilds[2][0];
@@ -65,7 +65,7 @@ public void setDefaultPieces()
 	for(int xPosition =0;xPosition< DIMENSION;xPosition++)
 		{
 			chessFeilds[xPosition][6] = new Square(xPosition, 6);
-			chessFeilds[xPosition][6].setPiece( new Pawn(playerBlack));
+			chessFeilds[xPosition][6].setPiece( new Pawn(playerWhite));
 		}
 	chessFeilds[0][7] = new Square(0,7);
 	chessFeilds[1][7] = new Square(1,7);
@@ -76,13 +76,13 @@ public void setDefaultPieces()
 	chessFeilds[6][7] = new Square(6,7);
 	chessFeilds[7][7] = new Square(7,7);
 	chessFeilds[0][7].setPiece(new Rook(playerWhite));
-	chessFeilds[1][7].setPiece(new Knight(playerBlack));
-	chessFeilds[2][7].setPiece(new Bishop(playerBlack));
-	chessFeilds[3][7].setPiece(new Queen(playerBlack));
-	chessFeilds[4][7].setPiece(new King(playerBlack));
-	chessFeilds[5][7].setPiece(new Bishop(playerBlack));
-	chessFeilds[6][7].setPiece(new Knight(playerBlack));
-	chessFeilds[7][7].setPiece(new Rook(playerBlack));
+	chessFeilds[1][7].setPiece(new Knight(playerWhite));
+	chessFeilds[2][7].setPiece(new Bishop(playerWhite));
+	chessFeilds[3][7].setPiece(new Queen(playerWhite));
+	chessFeilds[4][7].setPiece(new King(playerWhite));
+	chessFeilds[5][7].setPiece(new Bishop(playerWhite));
+	chessFeilds[6][7].setPiece(new Knight(playerWhite));
+	chessFeilds[7][7].setPiece(new Rook(playerWhite));
 	chessFeilds[0][7].piece.currentSquare =	chessFeilds[0][7];
 	chessFeilds[1][7].piece.currentSquare =	chessFeilds[1][7];
 	chessFeilds[2][7].piece.currentSquare =	chessFeilds[2][7];
@@ -112,6 +112,9 @@ public Square getChessFeilds(int x, int y) {
 	return chessFeilds[x][y].clone();
 }
 
+public Square getChessFeildsNoCopy(int x, int y) {
+	return chessFeilds[x][y];
+}
 public ChessBoard clone()
 {
 	ChessBoard returnedChess = new ChessBoard();
