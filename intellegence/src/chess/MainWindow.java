@@ -33,7 +33,7 @@ public class MainWindow extends JFrame {
 		pnl.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		pnl.repaint();
 		pnl.setVisible(true);
-		this.setSize(200, 200);
+		this.setSize(313, 330);
 		this.getContentPane().add(pnl);
 		this.validate();
 		setTitle("Lines");

@@ -25,7 +25,7 @@ public class ChessView extends JPanel {
 
 	public ChessView(){
 
-		Dimension size = new Dimension(200,200);
+		Dimension size = new Dimension(300,300);
 		gameChess =  new ChessBoard();
 		gameChess.setDefaultPieces();
 
@@ -140,9 +140,9 @@ public class ChessView extends JPanel {
             BufferedImage resized = new BufferedImage(400, 400, BufferedImage.TYPE_INT_ARGB_PRE);
             Graphics2D imageGr = (Graphics2D) resized.createGraphics();
             imageGr.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            imageGr.drawImage(img, 0, 0, 400, 400, null);
+            imageGr.drawImage(img, 0, 0, 348, 348, null);
             imageGr.dispose();
-            image = resized.getScaledInstance(400, 400, 0);
+            image = resized.getScaledInstance(348, 348, 0);
 	        //imageGr.drawImage(img, 0, 0, 200,200,null);
 	        g2d.drawImage(image, 0, 0, this);
 	        //g2d.dispose();
