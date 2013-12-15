@@ -76,9 +76,9 @@ public class StateChess implements IGameState{
 					 StateChess newState = new StateChess();
 					 ChessBoard newChessBoardState  =  chessBoard.clone();
 					 newSquare.piece = (Piece)currentSquare.piece.copy();
-					 newChessBoardState.setChessAt(newSquare);
+					 newChessBoardState.setChessAt(newSquare,currentSquare);
 					 Square oldSquare = new Square(xPosition, yPosition);
-					 newChessBoardState.setChessAt(oldSquare);					 
+					 newChessBoardState.setChessAt(oldSquare,currentSquare);					 
 					 newState.chessBoard = newChessBoardState;
 					 newState.currentPlayer =  newSquare.piece.player;
 					 //newState.utility =  getHeuristicValue();

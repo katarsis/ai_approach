@@ -108,13 +108,13 @@ public ArrayList<Square> getSafetyState(ChessBoard currentChessBoard, ArrayList<
 		if (this.color == Colors.white)
 		{
 			ChessBoard temporaryChess= currentChessBoard.clone();
-			temporaryChess.setChessAt(newSquare);
+			temporaryChess.setChessAt(newSquare,currentSquare);
 			if(!temporaryChess.whiteKing.isCheked(temporaryChess))answerMoves.add(newSquare);
 		}
 		if (this.color == Colors.black)
 		{
 			ChessBoard temporaryChess= currentChessBoard.clone();
-			temporaryChess.setChessAt(newSquare);
+			temporaryChess.setChessAt(newSquare,currentSquare);
 			if(!temporaryChess.blackKing.isCheked(temporaryChess))answerMoves.add(newSquare);
 		}
 	}

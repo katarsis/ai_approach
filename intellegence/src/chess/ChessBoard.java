@@ -127,8 +127,9 @@ public ChessBoard clone()
 	return returnedChess;
 }
 
-public void setChessAt(Square setSquare){
-	this.chessFeilds[setSquare.xPosition][setSquare.yPosition] = setSquare;
+public void setChessAt(Square setSquare, Square setterSquare){
+	this.chessFeilds[setSquare.xPosition][setSquare.yPosition] = setterSquare.clone();
+	this.chessFeilds[setterSquare.xPosition][setterSquare.yPosition].piece = null;
 }
 
 }

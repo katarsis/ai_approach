@@ -39,14 +39,29 @@ public class King extends Piece {
 	/*
 	 * function wich contorl stalemate situation 
 	 */
-	public boolean isStalemate()
+	public boolean isStalemate(ChessBoard currentChessBoard)
 	{
 		/*
-		 * frist get all enemy square
-		 * if king in possible square then shah
-		 * if shah then get all possible king square 
-		 * if all possible player square is attacked it's mate 
+		 * frist control checked is king or not 
+		 * if king is checked and for all pieces nothing possible moves include king then its mate
 		 */
+		ArrayList<Square> possibleSafetyMove = new ArrayList<>();
+		if(isCheked(currentChessBoard))
+		{
+			for(int xPosition =0; xPosition < currentChessBoard.DIMENSION; xPosition++)
+				for(int yPosition =0; yPosition< currentChessBoard.DIMENSION;yPosition++)
+				{
+					Square selectedSquare = currentChessBoard.getChessFeilds(xPosition, yPosition);
+					if(selectedSquare.piece!= null && selectedSquare.piece.player.color == this.color)
+					{
+						possibleSafetyMove.addAll(selectedSquare.piece.getAllMovies(currentChessBoard));
+					}
+				}
+			if(possibleSafetyMove.size()==0)
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -126,8 +141,9 @@ public class King extends Piece {
 				}
 			}
 		}
+		
 
-		return answerMoves;
+		return getSafetyState(currentChessBoardState, answerMoves, currentSquare);
 	}
 
 }
