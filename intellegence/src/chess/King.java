@@ -102,7 +102,7 @@ public class King extends Piece {
 	}
 	@Override
 	public ArrayList getAllPossibleMoves(ChessBoard currentChessBoardState) {
-		// TODO Auto-generated method stub
+
 		ArrayList<Square> possibleMove = new ArrayList<>();
 		ArrayList<Square> answerMoves = new ArrayList<>();
 		
@@ -141,10 +141,8 @@ public class King extends Piece {
 				}
 			}
 		}
-		
-
 		return getSafetyState(currentChessBoardState, answerMoves, currentSquare);
 	}
-
+	
 }
 

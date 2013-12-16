@@ -30,6 +30,12 @@ public void setDefaultPieces()
 	Player playerWhite = new Player(Colors.white,PlayerTypes.human);
 	Player playerBlack = new Player(Colors.black, PlayerTypes.computer);
 
+	//reset all pieces
+	for(int xPosition =0; xPosition<DIMENSION; xPosition++)
+		for(int yPosition=0; yPosition < DIMENSION; yPosition++)
+		{
+			chessFeilds[xPosition][yPosition].piece =  null;
+		}
 	//set the white pieces
 	for(int xPostion = 0; xPostion <DIMENSION; xPostion++)
 		{
@@ -108,6 +114,8 @@ public void print(){
 	}
 }
 
+
+
 public Square getChessFeilds(int x, int y) {
 	return chessFeilds[x][y].clone();
 }
@@ -132,4 +140,19 @@ public void setChessAt(Square setSquare, Square setterSquare){
 	this.chessFeilds[setterSquare.xPosition][setterSquare.yPosition].piece = null;
 }
 
+@Override
+public String toString() {
+	String outLine="";
+	for(int yPosition=0; yPosition<DIMENSION;yPosition++)
+	{
+		outLine+="|";
+		for(int xPosition =0;xPosition<DIMENSION;xPosition++)
+		{
+			outLine+=chessFeilds[xPosition][yPosition].print()+"|";
+		}
+		outLine+=System.lineSeparator();
+		
+	}
+	return outLine;
+}
 }
