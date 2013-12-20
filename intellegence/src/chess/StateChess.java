@@ -83,9 +83,6 @@ public class StateChess implements IGameState{
 					 newState.currentPlayer =  newSquare.piece.player;
 					 //newState.utility =  getHeuristicValue();
 					 childsState.add(newState);
-					 System.out.println("************************** ");
-					 System.out.println(" ");
-					 newChessBoardState.print();
 					}
 				}
 			}

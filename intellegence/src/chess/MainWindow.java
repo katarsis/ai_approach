@@ -36,7 +36,7 @@ public class MainWindow extends JFrame {
 		this.setSize(322, 340);
 		this.getContentPane().add(pnl);
 		this.validate();
-		setTitle("Lines");
+		setTitle("Chess");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         
