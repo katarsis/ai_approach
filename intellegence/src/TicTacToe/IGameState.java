@@ -18,5 +18,6 @@ public interface IGameState extends IState {
 	public void setGamer(int inGamer);
 	public int getNowGamer();
 	public int getOppsiteGame();
-	public boolean itHuman();
+	public boolean isHuman();
+	public boolean isComputer();
 }

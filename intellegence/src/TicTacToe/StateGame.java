@@ -278,9 +278,13 @@ public class StateGame implements IGameState, Cloneable{
 	}
 
 	@Override
-	public boolean itHuman() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isHuman() {
+		return thisAgeAt==this.HUMAN_GAMER;
+	}
+
+	@Override
+	public boolean isComputer() {
+		return thisAgeAt==this.COMP_GAMER;
 	}
 	
 	

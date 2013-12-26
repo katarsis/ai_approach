@@ -132,7 +132,13 @@ public class StateChess implements IGameState{
 	}
 
 	@Override
-	public boolean itHuman() {
+	public boolean isHuman() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isComputer() {
 		// TODO Auto-generated method stub
 		return false;
 	}
