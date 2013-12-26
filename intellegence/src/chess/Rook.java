@@ -13,6 +13,7 @@ public class Rook extends Piece{
 	public Rook(Player player)
 	{
 		super(player);
+		this.utility=6;
 		this.symbol ="R ";
 		if(player.color == Colors.black)
 		{

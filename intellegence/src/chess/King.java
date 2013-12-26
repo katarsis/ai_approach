@@ -17,6 +17,7 @@ public class King extends Piece {
 
 	public King(Player player){
 		super(player);
+		this.utility = Integer.MAX_VALUE;
 		this.symbol = "K ";
 		if(player.color == Colors.black)
 		{

@@ -19,6 +19,7 @@ public abstract class Piece implements Cloneable{
 public Player player;
 public Colors color;
 public Square currentSquare;
+public int utility;
 String symbol;
 
 public Image imagePiece;

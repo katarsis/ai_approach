@@ -14,6 +14,7 @@ public class Bishop extends Piece{
 	public Bishop(Player player){
 		super(player);
 		this.symbol ="B ";
+		this.utility =7;
 		if(player.color == Colors.black)
 		{
 			imagePiece = imageBlack;

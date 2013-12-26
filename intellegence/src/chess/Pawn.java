@@ -17,7 +17,7 @@ public class Pawn extends Piece {
 	 */
 	protected static final Image imageWhite = Utilits.loadImage("Pawn-W.png");
 	protected static final Image imageBlack = Utilits.loadImage("Pawn-B.png");
-	   
+	 
 	/*
 	 * Constructor
 	 * @param player	the initial player for this piece
@@ -25,6 +25,7 @@ public class Pawn extends Piece {
 	public Pawn(Player player)
 	{
 		super(player);
+		this.utility =1;
 		this.symbol = "P ";
 		if(player.color == Colors.black){
 			imagePiece = imageBlack;

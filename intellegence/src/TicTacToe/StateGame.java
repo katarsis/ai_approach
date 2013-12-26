@@ -168,8 +168,6 @@ public class StateGame implements IGameState, Cloneable{
 
 	@Override
 	public int getHeuristicValue(int gamerID) {
-		//GIT HUITA
-		// TODO Auto-generated method stub
 		/*
 		 * return value of heuristic 
 		 * if on line it's one =1
@@ -266,6 +264,23 @@ public class StateGame implements IGameState, Cloneable{
 	@Override
 	public void setGamer(int inGamer) {
 		this.thisAgeAt = inGamer;
+	}
+
+	@Override
+	public int getOppsiteGame() {
+		int oppsiteGamer = (getNowGamer()==StateGame.COMP_GAMER)?StateGame.HUMAN_GAMER:StateGame.COMP_GAMER;
+		return oppsiteGamer;
+	}
+
+	@Override
+	public int getNowGamer() {
+		return thisAgeAt;
+	}
+
+	@Override
+	public boolean itHuman() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

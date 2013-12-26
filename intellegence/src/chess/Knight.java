@@ -13,6 +13,7 @@ public class Knight extends Piece{
 
 	public Knight(Player player){
 		super(player);
+		this.utility =2;
 		this.symbol ="Kg";
 		if(player.color == Colors.white)
 		{

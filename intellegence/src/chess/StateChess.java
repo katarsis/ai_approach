@@ -11,14 +11,14 @@ public class StateChess implements IGameState{
 	public int utility;
 	public Player currentPlayer;
 	
+	
 	public StateChess (ChessBoard currentChessBoard,Player player)
 	{
 		this.chessBoard = currentChessBoard;
 		this.currentPlayer = player;
 	}
 	
-	//FIXME this must by private and not used 
-	public StateChess ()
+	private StateChess ()
 	{
 	}
 	
@@ -117,5 +117,23 @@ public class StateChess implements IGameState{
 	public void setGamer(int inGamer) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int getNowGamer() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getOppsiteGame() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean itHuman() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

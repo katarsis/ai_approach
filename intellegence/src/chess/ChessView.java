@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import piton.tree.Tree;
 import chess.Player.Colors;
 
 import java.lang.*;
@@ -111,6 +112,8 @@ public class ChessView extends JPanel {
 					//.copy();
 					//selectedPiece =null;
 				}
+				StateChess currentState =  new StateChess(gameChess, gameChess.blackKing.player);
+				//StateChess newState = Tree.getMinMaxStep(currentState, 2, gameChess.blackKing.player);
 				if(gameChess.blackKing.isStalemate(gameChess) || gameChess.whiteKing.isStalemate(gameChess))
 					gameChess.setDefaultPieces();
 				repaint();

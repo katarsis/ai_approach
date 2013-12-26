@@ -16,4 +16,7 @@ public interface IGameState extends IState {
 	public boolean setPiecesIn(int xPos, int yPos, int pieces);
 	public void changeGamer();
 	public void setGamer(int inGamer);
+	public int getNowGamer();
+	public int getOppsiteGame();
+	public boolean itHuman();
 }
