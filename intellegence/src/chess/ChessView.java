@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import TicTacToe.IGameState;
 import piton.tree.Tree;
 import chess.Player.Colors;
 
@@ -116,9 +117,13 @@ public class ChessView extends JPanel {
 				//StateChess newState = Tree.getMinMaxStep(currentState, 2, gameChess.blackKing.player);
 				if(gameChess.blackKing.isStalemate(gameChess) || gameChess.whiteKing.isStalemate(gameChess))
 					gameChess.setDefaultPieces();
+				IGameState newState =  Tree.getMinMaxStep(currentState, 2, 1);
+				StateChess newStateChess = (StateChess)newState.getInstance();
+				gameChess = newStateChess.getChess();
 				repaint();
 			}
 		});
+		
 		setSize(size);
 	}
 	

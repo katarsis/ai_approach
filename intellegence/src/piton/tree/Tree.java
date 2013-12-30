@@ -188,10 +188,10 @@ public class Tree {
 		 * if gamer is man then minimazing of scope
 		 * return answer state in node       
 		 */
-		StateGame fristStage = (StateGame)currentStep.getInstance();
+		IGameState fristStage = currentStep;
 		IGameState currentState =  fristStage;
 		IGameState answer = null;
-		int oppGamer= (gamerID==StateGame.COMP_GAMER)?StateGame.HUMAN_GAMER:StateGame.COMP_GAMER;
+		int oppGamer= (gamerID==fristStage.getCompID())?fristStage.getHumanID():fristStage.getCompID();
 		//FIXME create a static procedure or delete input parametr
 		
 		ArrayList<IState> childrenStates = currentState.getAllChild(currentState);
@@ -199,34 +199,31 @@ public class Tree {
 		
 		if(fristStage.IsFinState()||maxDepth==0)
 			return fristStage;
-		if(gamerID ==  fristStage.COMP_GAMER)
+		if(gamerID ==  fristStage.getCompID())
 		{
 			int bestScore = INF_MIN;
 			for(IState child: childrenStates)
 			{
 				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1,oppGamer);
-				if(possibleChild.getHeuristicValue(gamerID)>bestScore)
+				if(possibleChild.getHeuristicValue(gamerID)-possibleChild.getHeuristicValue(oppGamer)>bestScore)
 				{
-					bestScore = possibleChild.getHeuristicValue(gamerID);
+					bestScore = possibleChild.getHeuristicValue(gamerID)-possibleChild.getHeuristicValue(oppGamer);
 					answer= (IGameState)child;
 				}
-			//	answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
 			} 
-			//answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
 		}
-		else if(gamerID == fristStage.HUMAN_GAMER)
+		else if(gamerID == fristStage.getHumanID())
 		{
 			int bestScore = INF_MAX;
 			for(IState child: childrenStates)
 			{
 				IGameState possibleChild = Tree.getMinMaxStep((IGameState)child, maxDepth-1,oppGamer);
-				if(-1*possibleChild.getHeuristicValue(gamerID)<bestScore)
+				if(-1*(possibleChild.getHeuristicValue(gamerID)-possibleChild.getHeuristicValue(oppGamer))<bestScore)
 				{
-					bestScore = -1*possibleChild.getHeuristicValue(gamerID);
+					bestScore = -1*(possibleChild.getHeuristicValue(gamerID)-possibleChild.getHeuristicValue(oppGamer));
 					answer= (IGameState)child;
 				}
 			}
-		//	answer.Print();System.out.println(answer.getHeuristicValue(gamerID));
 		}
 		return answer;
 		

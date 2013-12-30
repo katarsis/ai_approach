@@ -267,14 +267,13 @@ public class StateGame implements IGameState, Cloneable{
 	}
 
 	@Override
-	public int getOppsiteGame() {
-		int oppsiteGamer = (getNowGamer()==StateGame.COMP_GAMER)?StateGame.HUMAN_GAMER:StateGame.COMP_GAMER;
-		return oppsiteGamer;
+	public int getCompID() {
+		return this.COMP_GAMER;
 	}
 
 	@Override
-	public int getNowGamer() {
-		return thisAgeAt;
+	public int getHumanID() {
+		return this.HUMAN_GAMER;
 	}
 
 	@Override
@@ -287,5 +286,10 @@ public class StateGame implements IGameState, Cloneable{
 		return thisAgeAt==this.COMP_GAMER;
 	}
 	
+	@Override
+	public String toString(){
+	
+		return this.boardState.printString();
+	}
 	
 }

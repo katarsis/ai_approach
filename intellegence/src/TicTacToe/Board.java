@@ -68,6 +68,27 @@ public class Board implements Cloneable{
 		}
 		System.out.println("---------------");
 	}
+	
+	public String printString()
+	{
+		String outline="";
+		for(int i=0;i<DIMENSION_SIZE;i++)
+		{
+			for(int j=0;j<DIMENSION_SIZE;j++)
+			{
+				if(boardsFlag[i][j]==this.CROSS_FLAG)
+					outline+="X";
+				else if(boardsFlag[i][j]==this.ZERO_FLAG)
+					outline+="0";
+				else
+					outline+=" ";
+				outline+="|";
+			}
+			outline+=System.lineSeparator();
+		//	System.out.println(outline);
+		}
+		return outline;
+	}
 
 
 	public int getBoardsFlagAt(int xPos, int yPos) 

@@ -7,6 +7,9 @@ import TicTacToe.IGameState;
 
 public class StateChess implements IGameState{
 
+	public static final int COMP_GAMER = 1;
+	public static final int HUMAN_GAMER = 0;
+	
 	public ChessBoard chessBoard;
 	public int utility;
 	public Player currentPlayer;
@@ -113,22 +116,22 @@ public class StateChess implements IGameState{
 		// TODO Auto-generated method stub
 		
 	}
+	
 	@Override
 	public void setGamer(int inGamer) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	//comp gamer is 1 
 	@Override
-	public int getNowGamer() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getCompID() {
+		return COMP_GAMER;
 	}
 
 	@Override
-	public int getOppsiteGame() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getHumanID() {
+		return HUMAN_GAMER;
 	}
 
 	@Override
@@ -141,5 +144,14 @@ public class StateChess implements IGameState{
 	public boolean isComputer() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override 
+	public String toString(){
+		return chessBoard.toString();
+	}
+	
+	public ChessBoard getChess(){
+		return this.chessBoard;
 	}
 }
