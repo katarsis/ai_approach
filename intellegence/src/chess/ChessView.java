@@ -69,13 +69,15 @@ public class ChessView extends JPanel {
 				//if man selected square and this square non empty and exists selected piece then this check piece
 				Point pt = e.getPoint();
 				Square currentSquare = getSquareByPoint(pt);
+				boolean manMakeAge = false;
+				//man selected piece
 				if(currentSquare.piece!=null && selectedPiece==null)
 				{
 					selectedPiece = currentSquare.piece.copy();
 					//selectedPiece.currentSquare = currentSquare.clone();
 					selectedPiece.currentSquare = currentSquare;
 					selectedSquare =  currentSquare;
-					
+					manMakeAge =  true;
 				}
 				else if(currentSquare.piece!=null && selectedPiece!=null )
 				{
@@ -99,6 +101,7 @@ public class ChessView extends JPanel {
 							//selectedPiece.currentSquare = currentSquare.clone();
 							selectedPiece.currentSquare = currentSquare;
 							selectedSquare =  currentSquare;
+							manMakeAge = true;
 						}
 					}
 					
@@ -117,9 +120,13 @@ public class ChessView extends JPanel {
 				//StateChess newState = Tree.getMinMaxStep(currentState, 2, gameChess.blackKing.player);
 				if(gameChess.blackKing.isStalemate(gameChess) || gameChess.whiteKing.isStalemate(gameChess))
 					gameChess.setDefaultPieces();
-				IGameState newState =  Tree.getMinMaxStep(currentState, 2, 1);
-				StateChess newStateChess = (StateChess)newState.getInstance();
-				gameChess = newStateChess.getChess();
+				if(manMakeAge)
+				{
+					IGameState newState =  Tree.getMinMaxStep(currentState, 2, 1);
+					StateChess newStateChess = (StateChess)newState.getInstance();
+					gameChess = newStateChess.getChess();
+				}
+				
 				repaint();
 			}
 		});
