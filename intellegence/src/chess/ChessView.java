@@ -77,7 +77,7 @@ public class ChessView extends JPanel {
 					//selectedPiece.currentSquare = currentSquare.clone();
 					selectedPiece.currentSquare = currentSquare;
 					selectedSquare =  currentSquare;
-					manMakeAge =  true;
+					//manMakeAge =  true;
 				}
 				else if(currentSquare.piece!=null && selectedPiece!=null )
 				{
@@ -87,7 +87,7 @@ public class ChessView extends JPanel {
 						currentSquare.piece = selectedPiece;
 						selectedPiece.currentSquare = currentSquare;
 						selectedPiece =null;
-						
+						manMakeAge = true;
 					}
 					else
 					{
@@ -98,13 +98,10 @@ public class ChessView extends JPanel {
 						else
 						{
 							selectedPiece = currentSquare.piece.copy();
-							//selectedPiece.currentSquare = currentSquare.clone();
 							selectedPiece.currentSquare = currentSquare;
 							selectedSquare =  currentSquare;
-							manMakeAge = true;
 						}
 					}
-					
 				}
 				else if(selectedPiece!=null)
 				{
@@ -113,18 +110,15 @@ public class ChessView extends JPanel {
 					selectedPiece.currentSquare = currentSquare;
 					selectedPiece =null;
 					refreshKingSquare(currentSquare);
-					//.copy();
-					//selectedPiece =null;
+					manMakeAge = true;
 				}
 				StateChess currentState =  new StateChess(gameChess, gameChess.blackKing.player);
-				//StateChess newState = Tree.getMinMaxStep(currentState, 2, gameChess.blackKing.player);
 				if(gameChess.blackKing.isStalemate(gameChess) || gameChess.whiteKing.isStalemate(gameChess))
 					gameChess.setDefaultPieces();
 				if(manMakeAge)
 				{
-					IGameState newState =  Tree.getMinMaxStep(currentState, 2, 1);
-					StateChess newStateChess = (StateChess)newState.getInstance();
-					gameChess = newStateChess.getChess();
+					StateChess newState =  (StateChess)Tree.getMinMaxStep(currentState, 2, 1);
+					gameChess = newState.getChess();
 				}
 				
 				repaint();
