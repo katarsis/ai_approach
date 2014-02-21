@@ -2,6 +2,8 @@ package problemSloving;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 
+import exception.NonInitals;
+
 public class TaskOfQueens {
 
 	public int[][] chessBoard;
@@ -144,7 +146,11 @@ public class TaskOfQueens {
 		return result;
 	}
 	
-	public Point getPointWithMinimumValue()
+	/*
+	 * return the minimum free costs point 
+	 * 
+	 */
+	public Point getPointWithMinimumValue() 
 	{
 		int minimum = Integer.MIN_VALUE;
 		Point result = new Point();
@@ -153,7 +159,7 @@ public class TaskOfQueens {
 		for(int i=0; i<DIMENSION;i++)
 			for(int j=0; j<DIMENSION;j++)
 			{
-				if(map[i][j]> minimum)
+				if(map[i][j]> minimum && map[i][j]!=QUEEN_FLAG)
 				{
 					result.xPosition =i;
 					result.yPosition =j;
@@ -161,5 +167,25 @@ public class TaskOfQueens {
 			}
 		System.out.println(print(getAttackedFeild()));
 		return result;
+	}
+	
+	/*
+	 * get miminum value for selected columns
+	 */
+	public Point getPointAtColumnWithMinimumValue(int columnNumber)
+	{
+		int minimum = Integer.MAX_VALUE;
+		Point result =  new Point();
+		int [][] map = getAttackedFeild();
+		for(int i=0;i<DIMENSION;i++)
+		{
+			if(map[columnNumber][i]< minimum && map[columnNumber][i]!=QUEEN_FLAG)
+			{
+				result.xPosition = columnNumber;
+				result.yPosition = i;
+				minimum = map[columnNumber][i];
+			}
+		}
+		return result; 
 	}
 }
