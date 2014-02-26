@@ -94,7 +94,7 @@ public class TaskOfQueens {
 	{
 		int result=0;
 		//serch by diagonal
-		for(int i=0,k=0; i<DIMENSION && k<DIMENSION;i++,k++)
+		for(int i=xPosition,k=yPosition; i<DIMENSION && k<DIMENSION;i++,k++)
 		{
 			if(i==xPosition && k== yPosition)
 			continue;
@@ -103,7 +103,25 @@ public class TaskOfQueens {
 				result++;
 			}
 		}
-		for(int x=DIMENSION-1, y=0 ; x>=0&&y<DIMENSION ; x--, y++)
+		for(int x=xPosition, y=yPosition ; x>=0&&y<DIMENSION ; x--, y++)
+		{
+			if(x==xPosition && y== yPosition)
+				continue;
+			if(chessBoard[x][y]==QUEEN_FLAG)
+			{
+				result++;
+			}
+		}
+		for(int x=xPosition, y=yPosition ; x<DIMENSION&&y>=0 ; x++, y--)
+		{
+			if(x==xPosition && y== yPosition)
+				continue;
+			if(chessBoard[x][y]==QUEEN_FLAG)
+			{
+				result++;
+			}
+		}
+		for(int x=xPosition, y=yPosition ; x>=0&&y>=0 ; x--, y--)
 		{
 			if(x==xPosition && y== yPosition)
 				continue;
@@ -179,7 +197,7 @@ public class TaskOfQueens {
 		int [][] map = getAttackedFeild();
 		for(int i=0;i<DIMENSION;i++)
 		{
-			if(map[columnNumber][i]< minimum && map[columnNumber][i]!=QUEEN_FLAG)
+			if(map[columnNumber][i]< minimum && chessBoard[columnNumber][i]!=QUEEN_FLAG)
 			{
 				result.xPosition = columnNumber;
 				result.yPosition = i;
