@@ -35,14 +35,53 @@ public class Plotter extends ApplicationFrame {
         this.setVisible(true);
 	}
 	
-	public DefaultCategoryDataset createDataSet(String[] dataSet)
+	public Plotter(int []inpt, int sizeX, int sizeY) {
+		super("plot");
+		final DefaultCategoryDataset dataSet = createDataSet(inpt);
+		final JFreeChart chart = createChart(dataSet);
+        final ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(sizeX, sizeY));
+        setContentPane(chartPanel);
+        this.pack();
+        RefineryUtilities.centerFrameOnScreen(this);
+        this.setVisible(true);
+	}
+	
+	public Plotter(double []inpt, int sizeX, int sizeY) {
+		super("plot");
+		final DefaultCategoryDataset dataSet = createDataSet(inpt);
+		final JFreeChart chart = createChart(dataSet);
+        final ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(sizeX, sizeY));
+        setContentPane(chartPanel);
+        this.pack();
+        RefineryUtilities.centerFrameOnScreen(this);
+        this.setVisible(true);
+	}
+	
+	private DefaultCategoryDataset createDataSet(String[] dataSet)
 	{
 		DefaultCategoryDataset series = new DefaultCategoryDataset();
 		for(int i =0; i<dataSet.length;i++)
 			series.addValue(Double.valueOf(dataSet[i]), "SERIES", String.valueOf(i));
-
 		return series;
 	}
+	
+	private DefaultCategoryDataset createDataSet(double[] dataSet)
+	{
+		DefaultCategoryDataset series = new DefaultCategoryDataset();
+		for(int i =0; i<dataSet.length;i++)
+			series.addValue(Double.valueOf(dataSet[i]), "SERIES", String.valueOf(i));
+		return series;
+	} 
+	
+	private DefaultCategoryDataset createDataSet(int[] dataSet)
+	{
+		DefaultCategoryDataset series = new DefaultCategoryDataset();
+		for(int i =0; i<dataSet.length;i++)
+			series.addValue(Double.valueOf(dataSet[i]), "SERIES", String.valueOf(i));
+		return series;
+	} 
 	
 	public JFreeChart createChart(CategoryDataset dataSet){
 		 final JFreeChart localJFreeChart = ChartFactory.createLineChart(
@@ -64,7 +103,7 @@ public class Plotter extends ApplicationFrame {
 					.createIntegerTickUnits());
 			LineAndShapeRenderer localLineAndShapeRenderer = (LineAndShapeRenderer) localCategoryPlot
 					.getRenderer();
-			localLineAndShapeRenderer.setSeriesShapesVisible(0, true);
+			localLineAndShapeRenderer.setSeriesShapesVisible(0, false);
 			localLineAndShapeRenderer.setSeriesShapesVisible(1, false);
 			localLineAndShapeRenderer.setSeriesShapesVisible(2, true);
 			localLineAndShapeRenderer.setSeriesLinesVisible(2, false);

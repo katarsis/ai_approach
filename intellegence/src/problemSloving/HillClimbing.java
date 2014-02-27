@@ -36,7 +36,7 @@ public class HillClimbing {
 			}
 			dataSeries.add(String.valueOf(iteration));
 			System.out.println(iteration);
-		}
+		}      
 		System.out.println(task.toString());
 		Collections.sort(dataSeries,new Comparator<String>() {
 			public int compare(String a, String b)
